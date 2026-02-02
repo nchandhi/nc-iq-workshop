@@ -147,4 +147,4 @@ Build complete! Ready for customer demo.
 
 ## Next Step
 
-Your customer PoC is ready! Proceed to [Build & Test](run.md) to demo it.
+Your customer PoC is ready! Proceed to [Demo Your PoC](demo.md) to demo it.
