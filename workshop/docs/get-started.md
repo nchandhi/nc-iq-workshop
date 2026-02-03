@@ -39,7 +39,7 @@ Generate custom data for **each use case**:
 !!! tip "Pre-PoC prep"
     Run Step 2 before your PoC. Enter the industry and a brief use case description. The AI generates realistic sample data, documents, and test questions tailored to your scenario.
 
-### Step 3: How it works
+### Step 3: Deep dive
 
 Prepare for technical questions in customer conversations:
 

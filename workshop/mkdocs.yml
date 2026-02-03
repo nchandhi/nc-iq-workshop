@@ -70,7 +70,7 @@ nav:
     - Choose Industry & Use Case: 02-customize/01-choose.md
     - Generate & Build: 02-customize/02-generate.md
     - Demo Your PoC: 02-customize/03-demo.md
-  - "Step 3: How it works":
+  - "Step 3: Deep dive":
     - Overview: 03-understand/index.md
     - "Foundry IQ: Documents": 03-understand/01-foundry-iq.md
     - "Fabric IQ: Data": 03-understand/02-fabric-iq.md

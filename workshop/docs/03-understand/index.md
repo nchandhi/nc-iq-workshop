@@ -1,6 +1,6 @@
-# How it works
+# Deep dive
 
-This module prepares you for technical questions during customer conversations.
+This section prepares you for technical questions during customer conversations.
 
 ## Architecture Overview
 
