@@ -49,4 +49,4 @@ Prepare for technical questions in customer conversations:
 
 ---
 
-[← Overview](index.md) | [Start Step 1: Deploy solution →](01-deploy/index.md)
+[← Overview](index.md) | [Deploy solution →](01-deploy/index.md)

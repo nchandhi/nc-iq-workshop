@@ -108,4 +108,4 @@ query_type = "vectorSemanticHybrid"
 
 ---
 
-[← Step 3 Overview](index.md) | [Fabric IQ: Data →](02-fabric-iq.md)
+[← Overview](index.md) | [Fabric IQ: Data →](02-fabric-iq.md)

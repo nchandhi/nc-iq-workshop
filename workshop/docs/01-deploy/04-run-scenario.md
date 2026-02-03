@@ -116,4 +116,4 @@ You: exit
     
     ---
 
-[← Configure environment](03-configure.md) | [Step 2: Customize for your use case →](../02-customize/index.md)
+[← Configure environment](03-configure.md) | [Customize for your use case →](../02-customize/index.md)

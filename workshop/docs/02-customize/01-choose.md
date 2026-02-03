@@ -113,4 +113,4 @@ DATA_SIZE=small
 
 ---
 
-[← Step 2 Overview](index.md) | [Generate & Build →](02-generate.md)
+[← Overview](index.md) | [Generate & Build →](02-generate.md)

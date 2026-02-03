@@ -68,4 +68,4 @@ When you run the AI generator for your scenario:
 
 ---
 
-[← Step 1: Run default scenario](../01-deploy/04-run-scenario.md) | [Choose Industry & Use Case →](01-choose.md)
+[← Run default scenario](../01-deploy/04-run-scenario.md) | [Choose Industry & Use Case →](01-choose.md)

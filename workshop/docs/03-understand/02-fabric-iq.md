@@ -164,4 +164,4 @@ Agent thinking:
 
 ---
 
-[← Foundry IQ: Documents](01-foundry-iq.md) | [Step 4: Cleanup →](../04-cleanup.md)
+[← Foundry IQ: Documents](01-foundry-iq.md) | [Cleanup →](../04-cleanup.md)

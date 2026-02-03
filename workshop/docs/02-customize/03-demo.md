@@ -67,7 +67,7 @@ Before customer meetings, prepare 5-7 questions:
     - [x] Combine sources for complex questions
     - [x] Use industry-appropriate terminology
     
-    **Next:** Review [Step 3: Deep dive](../03-understand/index.md) to prepare for technical questions
+    **Next:** Review [Deep dive](../03-understand/index.md) to prepare for technical questions
 
 ## Quick Reference: Regenerate for Another Customer
 
@@ -83,4 +83,4 @@ python scripts/00_build_solution.py --ai --clean \
 
 ---
 
-[← Generate & Build](02-generate.md) | [Step 3: Deep dive →](../03-understand/index.md)
+[← Generate & Build](02-generate.md) | [Deep dive →](../03-understand/index.md)
