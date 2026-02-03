@@ -2,7 +2,7 @@
 
 ## Gathering Customer Context
 
-Before generating a PoC, gather these details from your customer conversation:
+Before generating a PoC, gather these details for your use case:
 
 | Question | What to Capture |
 |----------|-----------------|
@@ -95,7 +95,7 @@ Edit `.env` in the project root:
 
 ```env
 # --- Customer PoC Configuration ---
-INDUSTRY=Your Customer's Industry
+INDUSTRY=Your Industry
 USECASE=Detailed description of their business context
 DATA_SIZE=small
 ```

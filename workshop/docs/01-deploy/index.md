@@ -1,4 +1,4 @@
-# Deploy Solution
+# Deploy solution
 
 Deploy the solution and see it working with the default Retail scenario.
 
@@ -6,14 +6,16 @@ Deploy the solution and see it working with the default Retail scenario.
 
 | Step | Action | Time |
 |------|--------|------|
-| 1 | Deploy Azure infrastructure | ~7 min |
-| 2 | Configure your environment | ~3 min |
+| 1 | Deploy Microsoft Foundry & Azure infrastructure | ~7 min |
+| 2 | Configure Fabric Workspace | ~3 min |
 | 3 | Run the solution with Retail demo data | ~5 min |
 
 ## What Gets Deployed
 
 | Resource | Purpose |
 |----------|---------|
+| **Microsoft Foundry** | Hosts Multi-Tool Agent and Foundry IQ |
+| **Microsoft Fabric** | Powers Fabric IQ with business ontology |
 | Azure AI Services | Hosts GPT-4o and embedding models |
 | Azure AI Search | Vector database for document retrieval |
 | Storage Account | Stores documents and agent artifacts |

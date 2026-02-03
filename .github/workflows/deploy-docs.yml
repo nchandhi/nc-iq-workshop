@@ -31,7 +31,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material pymdown-extensions
+          pip install mkdocs mkdocs-material pymdown-extensions
 
       - name: Build site
         run: |

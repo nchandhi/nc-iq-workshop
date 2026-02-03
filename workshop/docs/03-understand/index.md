@@ -1,4 +1,4 @@
-# Understand the Technology
+# How it works
 
 This module prepares you for technical questions during customer conversations.
 
@@ -13,7 +13,6 @@ This module prepares you for technical questions during customer conversations.
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │                     Multi-Tool AI Agent                             │
-│                      (Azure AI Foundry)                             │
 │                                                                     │
 │   1. Analyzes question                                              │
 │   2. Decides which tool(s) to use                                   │

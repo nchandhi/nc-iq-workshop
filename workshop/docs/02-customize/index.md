@@ -1,17 +1,8 @@
-# Customize for Your Customer
+# Customize for your use case
 
-This is where it gets exciting. Generate a complete working demo tailored to **your customer's industry and use case** in minutes.
+This is where it gets exciting. Generate a complete working PoC tailored to **your industry and use case** in minutes.
 
-## The Power of Custom PoCs
-
-| Traditional Approach | With This Accelerator |
-|---------------------|----------------------|
-| Weeks of custom development | ~20 minutes |
-| Generic demo data | Industry-specific scenarios |
-| "Imagine if..." | "Let me show you..." |
-| Technical documentation | Working demo |
-
-## What Gets Generated
+## What gets generated
 
 When you run the AI generator for a customer scenario:
 

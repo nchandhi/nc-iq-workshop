@@ -15,25 +15,26 @@
 
 | Component | Technology | Customer Value |
 |-----------|------------|----------------|
-| AI Agent | Azure AI Foundry | Single interface for all enterprise knowledge |
-| Knowledge Base | Foundry IQ | Intelligent search over policies & documents |
-| Business Ontology | Fabric IQ | Natural language queries over business data |
 | Sample Data | AI-Generated | Realistic demo tailored to customer's industry |
+| Business Ontology | Fabric IQ | Natural language queries over business data |
+| Knowledge Base | Foundry IQ | Intelligent search over policies & documents |
+| AI Agent | Multi-Tool Agent | Single interface combining both sources |
 
-## Your PoC Journey
+## Your PoC journey
 
-### Module 01: Deploy Solution (Do Once)
+### Module 01: Deploy solution (do once)
 
 Deploy infrastructure and run with pre-built **Retail / E-Commerce** data:
 
-- Deploy Azure resources (AI Services, AI Search, Storage)
+- Deploy **Microsoft Foundry** and Azure resources (AI Services, AI Search, Storage)
+- Configure **Microsoft Fabric** connection
 - Configure your environment
 - See the agent working with sample Retail data
 - Takes ~15 minutes
 
-### Module 02: Customize for Your Customer (Repeat)
+### Module 02: Customize for your use case (repeat)
 
-Generate custom data for **each customer engagement**:
+Generate custom data for **each use case**:
 
 | Customer Industry | Use Case Example | Demo Questions |
 |-------------------|------------------|----------------|
@@ -44,10 +45,10 @@ Generate custom data for **each customer engagement**:
 | Insurance | Claims data + policy documents | "What's the status of claims filed this week vs our SLA?" |
 | **Customer X** | **Their data + Their docs** | **Their burning questions** |
 
-!!! tip "Pre-Meeting Prep"
-    Run Module 03 the day before your customer meeting. Enter their industry and a brief use case description. The AI generates realistic sample data, documents, and test questions tailored to their world.
+!!! tip "Pre-PoC prep"
+    Run Module 02 before your PoC. Enter the industry and a brief use case description. The AI generates realistic sample data, documents, and test questions tailored to your scenario.
 
-### Module 03: Understand the Technology
+### Module 03: How it works
 
 Prepare for technical questions in customer conversations:
 

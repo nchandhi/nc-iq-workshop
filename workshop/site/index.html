@@ -67,7 +67,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +90,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Build faster with Solution Accelerators – Foundry IQ + Fabric IQ" class="md-header__button md-logo" aria-label="Build faster with Solution Accelerators – Foundry IQ + Fabric IQ" data-md-component="logo">
       
@@ -125,7 +125,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -135,7 +135,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -205,13 +205,141 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="get-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Get Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="01-deploy/" class="md-tabs__link">
+          
+  
+  
+  01 Deploy solution
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="02-customize/" class="md-tabs__link">
+          
+  
+  
+  02 Customize for your use case
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="03-understand/" class="md-tabs__link">
+          
+  
+  
+  03 How it works
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="04-cleanup/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  04 Cleanup
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -225,8 +353,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Build faster with Solution Accelerators – Foundry IQ + Fabric IQ" class="md-nav__button md-logo" aria-label="Build faster with Solution Accelerators – Foundry IQ + Fabric IQ" data-md-component="logo">
       
@@ -318,10 +448,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-customer-opportunity" class="md-nav__link">
+  <a href="#why-custom-pocs-matter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Customer Opportunity
+        Why custom PoCs matter
       
     </span>
   </a>
@@ -329,10 +459,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#your-accelerator" class="md-nav__link">
+  <a href="#the-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Your Accelerator
+        The solution
       
     </span>
   </a>
@@ -343,7 +473,7 @@
   <a href="#workshop-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workshop Flow
+        Workshop flow
       
     </span>
   </a>
@@ -396,28 +526,24 @@
     
     
       
-        
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    01 Deploy Solution
+    01 Deploy solution
   
 
     
@@ -433,7 +559,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    01 Deploy Solution
+    01 Deploy solution
   
 
           </label>
@@ -569,28 +695,24 @@
     
     
       
-        
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    02 Customize for Your Customer
+    02 Customize for your use case
   
 
     
@@ -606,7 +728,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    02 Customize for Your Customer
+    02 Customize for your use case
   
 
           </label>
@@ -742,28 +864,24 @@
     
     
       
-        
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    03 Understand the Technology
+    03 How it works
   
 
     
@@ -779,7 +897,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    03 Understand the Technology
+    03 How it works
   
 
           </label>
@@ -930,10 +1048,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-customer-opportunity" class="md-nav__link">
+  <a href="#why-custom-pocs-matter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Customer Opportunity
+        Why custom PoCs matter
       
     </span>
   </a>
@@ -941,10 +1059,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#your-accelerator" class="md-nav__link">
+  <a href="#the-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Your Accelerator
+        The solution
       
     </span>
   </a>
@@ -955,7 +1073,7 @@
   <a href="#workshop-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workshop Flow
+        Workshop flow
       
     </span>
   </a>
@@ -983,33 +1101,24 @@
 
 
 <h1 id="overview">Overview</h1>
-<p>This workshop enables field teams to <strong>rapidly build customer-specific PoCs</strong> that demonstrate the power of combining unstructured document knowledge with structured enterprise data.</p>
-<p><strong>Go from customer conversation to working demo in under an hour.</strong></p>
-<h2 id="the-customer-opportunity">The Customer Opportunity</h2>
-<p>Every customer has valuable knowledge spread across:</p>
+<h2 id="why-custom-pocs-matter">Why custom PoCs matter</h2>
+<p>Building a PoC usually means weeks of work, placeholder data, and "picture this..." conversations.</p>
+<p>This workshop flips that. Generate a working PoC for any industry in minutes — with realistic data that lets you show, not tell.</p>
+<h2 id="the-solution">The solution</h2>
+<p>Build an AI solution that answers questions across documents and data — customized for any industry, in minutes not weeks.</p>
+<p>Powered by <strong>Microsoft Fabric</strong> and <strong>Microsoft Foundry</strong>:</p>
 <ul>
-<li><strong>Documents</strong> — Policies, procedures, manuals, FAQs</li>
-<li><strong>Data Systems</strong> — Databases, data warehouses, business applications</li>
+<li><strong>Fabric IQ</strong> — Translates natural language into SQL queries via ontology</li>
+<li><strong>Foundry IQ</strong> — Searches documents using agentic retrieval (plan, iterate, reflect)</li>
+<li><strong>Multi-Tool Agent</strong> — Routes questions to the right source automatically</li>
 </ul>
-<p>They want a single AI-powered interface where employees can ask questions and get answers from <strong>both sources</strong> — without knowing where the information lives.</p>
-<h2 id="your-accelerator">Your Accelerator</h2>
-<p>This solution accelerator lets you demonstrate exactly that capability, <strong>customized to your customer's industry and use case</strong>:</p>
-<ul>
-<li><strong>Foundry IQ</strong> — Agentic retrieval over documents (plan, iterate, reflect)</li>
-<li><strong>Fabric IQ</strong> — Natural language queries over structured data via ontology</li>
-<li><strong>Multi-Tool Agent</strong> — Combines both to answer complex business questions</li>
-</ul>
-<div class="admonition success">
-<p class="admonition-title">Why This Matters for PoCs</p>
-<p>Instead of weeks building a custom demo, generate realistic sample data and a working agent for <strong>any industry</strong> in minutes. Walk into customer meetings with a tailored demo that speaks their language.</p>
-</div>
-<h2 id="workshop-flow">Workshop Flow</h2>
+<h2 id="workshop-flow">Workshop flow</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  01 Deploy Solution   → Deploy &amp; run with default Retail scenario   │
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  01 Deploy solution   → Deploy &amp; run with default Retail scenario   │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  02 Customize         → Generate data for YOUR customer&#39;s industry  │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  02 Customize         → Generate data for YOUR use case             │
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├─────────────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  03 Understand        → Technical details for customer questions    │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  03 How it works      → Technical details for your conversations    │
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├─────────────────────────────────────────────────────────────────────┤
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  04 Cleanup           → Delete resources when done                  │
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>└─────────────────────────────────────────────────────────────────────┘
@@ -1024,18 +1133,18 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>01 Deploy Solution</strong></td>
-<td>Deploy infrastructure &amp; run with Retail demo</td>
+<td><strong>01 Deploy solution</strong></td>
+<td>Deploy Microsoft Foundry + Fabric &amp; run with Retail demo</td>
 <td>~15 min</td>
 </tr>
 <tr>
-<td><strong>02 Customize for Your Customer</strong></td>
+<td><strong>02 Customize for your use case</strong></td>
 <td>Generate industry-specific data and demo</td>
 <td>~20 min</td>
 </tr>
 <tr>
-<td><strong>03 Understand the Technology</strong></td>
-<td>Technical deep dive for customer Q&amp;A</td>
+<td><strong>03 How it works</strong></td>
+<td>Technical deep dive for Q&amp;A</td>
 <td>~15 min</td>
 </tr>
 <tr>
@@ -1046,10 +1155,10 @@
 </tbody>
 </table>
 <div class="admonition tip">
-<p class="admonition-title">Before a Customer Meeting</p>
+<p class="admonition-title">Before a PoC</p>
 <ol>
 <li>Complete <strong>Module 01</strong> once to deploy and see it working</li>
-<li>Run <strong>Module 02</strong> to customize for your customer's industry</li>
+<li>Run <strong>Module 02</strong> to customize for your use case</li>
 <li>Review <strong>Module 03</strong> to prepare for technical questions</li>
 </ol>
 </div>
@@ -1127,7 +1236,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
