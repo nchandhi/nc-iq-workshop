@@ -8,9 +8,29 @@ After generation completes, test the agent:
 python scripts/08a_test_multi_tool_agent.py
 ```
 
+## Use the Generated Sample Questions
+
+Each scenario generates ready-to-use demo questions in the data folder:
+
+```bash
+# View sample questions for your scenario
+cat data/default/config/sample_questions.txt
+```
+
+The file contains three categories of questions:
+
+| Category | Source | Example |
+|----------|--------|---------|
+| **Structured data questions** | Fabric IQ (data) | "How many outages occurred last month?" |
+| **Unstructured data questions** | Foundry IQ (docs) | "What are the policies for notifying customers?" |
+| **Combined questions** | Both sources | "Which outages exceeded our policy thresholds?" |
+
+!!! tip "Use these questions first"
+    The generated questions are tailored to your scenario's data and documents. Start with these before improvising.
+
 ## Demo Tips
 
-### Start with Data Questions
+### Start with structured data questions
 
 Show the power of natural language over structured data:
 
@@ -20,7 +40,7 @@ Show the power of natural language over structured data:
 "Show me the top 5 [entities] by [metric]"
 ```
 
-### Then Document Questions
+### Then unstructured data questions
 
 Demonstrate intelligent document retrieval:
 
@@ -30,9 +50,9 @@ Demonstrate intelligent document retrieval:
 "What are the requirements for [action]?"
 ```
 
-### Finish with Combined Questions
+### Finish with combined questions
 
-This is the "wow" moment — questions that need both sources:
+This is the "wow" moment: questions that need both sources:
 
 ```
 "Based on our [policy], which [entities] need attention?"
@@ -40,21 +60,21 @@ This is the "wow" moment — questions that need both sources:
 "Which [items] don't comply with our [policy/guidelines]?"
 ```
 
-## Prepare Your Demo Script
+## Prepare your demo script
 
 Before customer meetings, prepare 5-7 questions:
 
 | # | Question Type | Example |
 |---|---------------|---------|
-| 1 | Simple data | "How many customers do we have?" |
-| 2 | Aggregation | "What's our total revenue this quarter?" |
-| 3 | Filtering | "Show me orders over $1000" |
-| 4 | Policy lookup | "What's our return policy?" |
-| 5 | Process guide | "How do we handle escalations?" |
-| 6 | **Combined** | "Which high-value orders might need expedited shipping per our SLA?" |
-| 7 | **Combined** | "Are there any exceptions to our policy in the current data?" |
+| 1 | Structured data | "How many outages occurred last month?" |
+| 2 | Structured data | "What is the average resolution time for tickets?" |
+| 3 | Structured data | "Which outage caused the most customer impact?" |
+| 4 | Unstructured data | "What are the policies for notifying customers of outages?" |
+| 5 | Unstructured data | "What steps must be taken to escalate an outage?" |
+| 6 | **Combined** | "Which outages exceeded the maximum duration defined in our policy?" |
+| 7 | **Combined** | "What percentage of tickets were resolved within our SLA?" |
 
-!!! tip "Let Customers Ask Questions"
+!!! tip "Let customers ask questions"
     After your prepared demo, let customers ask their own questions. This shows the solution handles real scenarios, not just scripted ones.
 
 ## Checkpoint
@@ -62,8 +82,8 @@ Before customer meetings, prepare 5-7 questions:
 !!! success "Ready for Customer Demo"
     Your custom PoC should:
     
-    - [x] Answer data questions accurately
-    - [x] Retrieve relevant document content
+    - [x] Answer structured data questions accurately
+    - [x] Retrieve relevant unstructured document content
     - [x] Combine sources for complex questions
     - [x] Use industry-appropriate terminology
     

@@ -43,19 +43,19 @@ When you run the AI generator for your scenario:
     - "Which machines are overdue for maintenance?"
     - "What's our QC process for critical components?"
 
-=== "Healthcare"
+=== "Insurance"
 
-    **Input:** "Multi-location clinic with patient scheduling"
+    **Input:** "Property insurance with claims and policy management"
     
     **Output:**
-    - `patients.csv` — Patient records, appointments
-    - `providers.csv` — Doctor availability, specialties
-    - `scheduling_policy.pdf` — Appointment guidelines
-    - `insurance_guide.pdf` — Coverage verification
+    - `policies.csv` — Policy details, coverage, premiums
+    - `claims.csv` — Claim status, amounts, dates
+    - `claims_process.pdf` — How to file claims
+    - `coverage_guide.pdf` — Policy coverage explanations
     
     **Demo Questions:**
-    - "Which providers have availability this week?"
-    - "What's our policy for same-day appointments?"
+    - "Which claims are approaching our SLA deadline?"
+    - "What does our standard policy cover?"
 
 === "Finance"
 

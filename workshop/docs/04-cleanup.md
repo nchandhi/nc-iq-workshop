@@ -70,11 +70,11 @@ python scripts/00_build_solution.py --ai --clean \
   --usecase "Brief description of their use case"
 ```
 
-**Example for a retail customer:**
+**Example for an insurance customer:**
 ```bash
 python scripts/00_build_solution.py --ai --clean \
-  --industry "Retail" \
-  --usecase "Fashion e-commerce with seasonal inventory, customer orders, and return processing"
+  --industry "Insurance" \
+  --usecase "Property and casualty insurance with claims processing, policy management, and fraud detection"
 ```
 
 ### Talking Points for Customer Conversations

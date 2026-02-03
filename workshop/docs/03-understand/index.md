@@ -7,7 +7,7 @@ This section prepares you for technical questions during customer conversations.
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        User Question                                │
-│            "Which products need reordering per our policy?"         │
+│            "Which outages exceeded our policy thresholds?"          │
 └─────────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
@@ -50,7 +50,7 @@ This section prepares you for technical questions during customer conversations.
 
 ### "How is this different from ChatGPT?"
 
-> **Your answer:** "ChatGPT uses general internet knowledge. This agent is grounded in YOUR documents and YOUR data. It can't hallucinate about your return policy because it retrieves the actual policy. It can't make up sales numbers because it queries your actual database."
+> **Your answer:** "ChatGPT uses general internet knowledge. This agent is grounded in YOUR documents and YOUR data. It can't hallucinate about your outage policies because it retrieves the actual policy. It can't make up ticket metrics because it queries your actual database."
 
 ### "Is our data secure?"
 

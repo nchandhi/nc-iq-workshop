@@ -10,22 +10,22 @@ An ontology is a semantic model that helps AI understand your business:
 
 | Component | Purpose | Example |
 |-----------|---------|---------|
-| **Entities** | Business objects | Products, Orders, Customers |
-| **Relationships** | How entities connect | Order → contains → Products |
-| **Rules** | Business logic | "Low Stock = stockLevel < reorderPoint" |
-| **Actions** | Queryable operations | GetTopProducts, GetRevenueByRegion |
+| **Entities** | Business objects | Outages, Tickets, Regions |
+| **Relationships** | How entities connect | Ticket → related to → Outage |
+| **Rules** | Business logic | "Critical Outage = customerImpact > 1000" |
+| **Actions** | Queryable operations | GetOutagesByRegion, GetTicketResolutionTime |
 
 ## How NL→SQL Works
 
 ```
-User: "What products are selling well in Europe?"
+User: "Which outages had the most customer impact last month?"
 
 ┌─────────────────────────────────────────────────────────────┐
 │  Step 1: UNDERSTAND                                         │
 │  Agent interprets intent using ontology:                    │
-│  • "products" → Products entity                             │
-│  • "selling well" → high quantity in Orders                 │
-│  • "Europe" → region filter                                 │
+│  • "outages" → NetworkOutages entity                        │
+│  • "customer impact" → customersAffected column              │
+│  • "last month" → date filter                               │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
@@ -33,12 +33,11 @@ User: "What products are selling well in Europe?"
 │  Step 2: TRANSLATE                                          │
 │  Generate SQL from semantic understanding:                  │
 │                                                             │
-│  SELECT p.productName, SUM(o.quantity) as totalSold         │
-│  FROM products p                                            │
-│  JOIN orders o ON p.productId = o.productId                 │
-│  WHERE o.region = 'Europe'                                  │
-│  GROUP BY p.productName                                     │
-│  ORDER BY totalSold DESC                                    │
+│  SELECT outageId, region, customersAffected, duration       │
+│  FROM network_outages                                       │
+│  WHERE outageDate >= DATEADD(month, -1, GETDATE())          │
+│  ORDER BY customersAffected DESC                            │
+│  LIMIT 10                                                   │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
@@ -46,10 +45,10 @@ User: "What products are selling well in Europe?"
 │  Step 3: EXECUTE & EXPLAIN                                  │
 │  Run against Fabric, format response:                       │
 │                                                             │
-│  "Here are the top selling products in Europe:              │
-│   1. Wireless Headphones - 234 units                        │
-│   2. Smart TV 55" - 189 units                               │
-│   3. Running Shoes - 156 units"                             │
+│  "Here are the outages with highest customer impact:        │
+│   1. OUT-1042 (Northeast) - 15,234 customers                │
+│   2. OUT-1089 (West) - 12,891 customers                     │
+│   3. OUT-1056 (South) - 8,445 customers"                    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -82,26 +81,26 @@ Agent: Uses "Best Customer" rule → Correct SQL → Meaningful results
 
 | Question Type | Source | Example |
 |---------------|--------|---------|
-| **Policy/Process** | Foundry IQ (Documents) | "What's our return policy?" |
-| **Metrics/Numbers** | Fabric IQ (Data) | "What's our return rate?" |
-| **Combined** | Both | "Are we meeting our return SLA?" |
+| **Policy/Process** | Foundry IQ (Documents) | "What's our outage notification policy?" |
+| **Metrics/Numbers** | Fabric IQ (Data) | "What's our average resolution time?" |
+| **Combined** | Both | "Are we meeting our SLA targets?" |
 
 ### Combined Example
 
 ```
-User: "Are we meeting our shipping SLA?"
+User: "Are we meeting our ticket resolution SLA?"
 
 Agent thinking:
 1. First, I need the SLA targets (documents)
-   → Search Foundry IQ → "Standard: 5 days, Express: 2 days"
+   → Search Foundry IQ → "Critical: 4 hours, High: 8 hours, Medium: 24 hours"
 
 2. Then, I need actual performance (data)
-   → Query Fabric IQ → "Avg standard: 4.2 days, Express: 1.8 days"
+   → Query Fabric IQ → "Avg critical: 3.2 hrs, High: 7.1 hrs, Medium: 18.5 hrs"
 
 3. Compare and respond:
-   "Yes, we're meeting both SLAs. Standard shipping averages 
-   4.2 days (target: 5 days) and Express averages 1.8 days 
-   (target: 2 days)."
+   "Yes, we're meeting all SLA targets. Critical tickets average 
+   3.2 hours (target: 4 hours), High priority averages 7.1 hours 
+   (target: 8 hours), and Medium averages 18.5 hours (target: 24 hours)."
 ```
 
 ## Customer Talking Points
@@ -109,7 +108,7 @@ Agent thinking:
 | Question | Response |
 |----------|----------|
 | "Why not just let users write SQL?" | "Most users can't write SQL. And even those who can may not know the schema. Natural language lets anyone query data." |
-| "How do you handle ambiguous terms?" | "The ontology defines business terms. 'Best customer', 'low stock', 'overdue order' all have precise definitions your business controls." |
+| "How do you handle ambiguous terms?" | "The ontology defines business terms. 'Critical outage', 'high impact', 'overdue ticket' all have precise definitions your business controls." |
 | "What about performance?" | "Queries run against Fabric's optimized engine. The NL→SQL translation happens once, then it's standard SQL execution." |
 
 ## Technical Details
@@ -138,25 +137,25 @@ Agent thinking:
 {
   "entities": [
     {
-      "name": "Products",
-      "table": "products",
-      "key": "productId",
-      "attributes": ["productName", "category", "unitPrice", "stockLevel"]
+      "name": "NetworkOutages",
+      "table": "network_outages",
+      "key": "outageId",
+      "attributes": ["region", "outageType", "customersAffected", "duration"]
     }
   ],
   "relationships": [
     {
-      "name": "contains_product",
-      "from": "Orders",
-      "to": "Products",
+      "name": "related_to_outage",
+      "from": "TroubleTickets",
+      "to": "NetworkOutages",
       "type": "many-to-one"
     }
   ],
   "businessRules": [
     {
-      "name": "LowStock",
-      "entity": "Products",
-      "condition": "stockLevel < reorderPoint"
+      "name": "CriticalOutage",
+      "entity": "NetworkOutages",
+      "condition": "customersAffected > 1000"
     }
   ]
 }

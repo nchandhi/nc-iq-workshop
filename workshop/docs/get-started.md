@@ -29,9 +29,9 @@ Generate custom data for **each use case**:
 
 | Customer Industry | Use Case Example | Demo Questions |
 |-------------------|------------------|----------------|
-| Retail | Product catalog + return policies | "What's our return policy for electronics over $500?" |
+| Telecommunications | Network outages + service policies | "Which outages exceeded our SLA threshold?" |
 | Manufacturing | Equipment data + maintenance docs | "Which machines are overdue for maintenance per our schedule?" |
-| Healthcare | Patient records + compliance docs | "Do we have capacity for emergency appointments today?" |
+| Retail | Product catalog + return policies | "What's our return policy for electronics over $500?" |
 | Finance | Account data + lending policies | "Which loan applications meet our approval criteria?" |
 | Insurance | Claims data + policy documents | "What's the status of claims filed this week vs our SLA?" |
 | **Customer X** | **Their data + Their docs** | **Their burning questions** |

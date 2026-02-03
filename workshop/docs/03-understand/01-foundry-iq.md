@@ -18,14 +18,14 @@ Foundry IQ is Azure AI Foundry's unified knowledge layer that enables agents to 
 Unlike simple vector search (find similar text), agentic retrieval uses AI to:
 
 ```
-User: "What's our policy on returning electronics purchased on sale?"
+User: "What's our policy for notifying customers during extended outages?"
 
 ┌─────────────────────────────────────────────────────────────┐
 │  Step 1: PLAN                                               │
 │  Agent decomposes into sub-queries:                         │
-│  • "electronics return policy"                              │
-│  • "sale items return conditions"                           │
-│  • "exceptions for discounted products"                     │
+│  • "customer notification policy"                           │
+│  • "extended outage definition"                             │
+│  • "communication requirements during incidents"            │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
@@ -49,10 +49,10 @@ User: "What's our policy on returning electronics purchased on sale?"
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │  Response with Citations                                    │
-│  "According to our Return Policy (page 3), electronics can  │
-│  be returned within 15 days. However, the Sale Items        │
-│  Addendum (page 1) notes that clearance items are final     │
-│  sale and cannot be returned..."                            │
+│  "According to our Customer Service Policies (page 2),      │
+│  customers must be notified within 15 minutes of a          │
+│  confirmed outage. The Outage Management Policy (page 1)    │
+│  defines extended outages as those exceeding 4 hours..."    │
 └─────────────────────────────────────────────────────────────┘
 ```
 

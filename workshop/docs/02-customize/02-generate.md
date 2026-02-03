@@ -76,17 +76,17 @@ cat data/*/config/sample_questions.txt
 ### Sample Questions (Insurance Example)
 
 ```
-# Data Questions (Fabric IQ)
+# Structured data questions (Fabric IQ)
 How many open claims do we have?
 What's the total value of claims filed this month?
 Which agents have the most policies?
 
-# Document Questions (Foundry IQ)
+# Unstructured data questions (Foundry IQ)
 What's our process for filing a property claim?
 What does our standard homeowner policy cover?
 What are our underwriting criteria for high-risk properties?
 
-# Combined Questions (Both)
+# Combined questions (Both)
 Which open claims are approaching our SLA deadline based on our process guidelines?
 Do any current claims involve coverage types not in our standard policy?
 ```
