@@ -85,4 +85,4 @@ Before proceeding:
 
 ---
 
-[← Configure Fabric items and connection](02-setup-fabric.md) | [Build solution →](04-run-scenario.md)
+[← Configure Fabric items](02-setup-fabric.md) | [Build solution →](04-run-scenario.md)

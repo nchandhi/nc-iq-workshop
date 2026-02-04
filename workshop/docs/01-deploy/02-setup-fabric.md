@@ -1,4 +1,4 @@
-# Configure Fabric items and connection
+# Configure Fabric items
 
 Configure your Microsoft Fabric workspace for Fabric IQ.
 
