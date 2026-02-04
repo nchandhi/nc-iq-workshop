@@ -6,7 +6,7 @@ Usage:
     python 05_create_fabric_agent.py
 
 Prerequisites:
-    - Run 02_setup_fabric.py (creates Lakehouse and Ontology)
+    - Run 02_create_fabric_items.py (creates Lakehouse and Ontology)
     - Run 03_load_fabric_data.py (loads data to tables)
 
 What this script does:
@@ -58,7 +58,7 @@ if not os.path.exists(config_dir):
 fabric_ids_path = os.path.join(config_dir, "fabric_ids.json")
 if not os.path.exists(fabric_ids_path):
     print(f"ERROR: fabric_ids.json not found")
-    print("       Run 02_setup_fabric.py first")
+    print("       Run 02_create_fabric_items.py first")
     sys.exit(1)
 
 with open(fabric_ids_path) as f:

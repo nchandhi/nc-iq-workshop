@@ -3,7 +3,7 @@
 Creates Lakehouse and Ontology with data bindings (no data upload).
 
 Usage:
-    python 02_setup_fabric.py [--data-folder <PATH>]
+    python 02_create_fabric_items.py [--data-folder <PATH>]
 
 Prerequisites:
     - Run 01_generate_sample_data.py first (sets DATA_FOLDER in .env)
@@ -520,7 +520,7 @@ Next step - Load data to Fabric:
 After loading data:
   1. Open Fabric portal and verify Lakehouse has data
   2. Load CSV to Tables (Lakehouse > Get data > Load to Tables)
-  3. Run: python scripts/04_generate_prompt.py
+  3. Run: python scripts/04_generate_agent_prompt.py
 
 Manual step required:
   - Create Data Agent in Fabric portal and map to Ontology

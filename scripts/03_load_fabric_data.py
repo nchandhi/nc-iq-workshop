@@ -7,7 +7,7 @@ Usage:
 
 Prerequisites:
     - Run 01_generate_sample_data.py (sets DATA_FOLDER in .env)
-    - Run 02_setup_fabric.py (creates Lakehouse)
+    - Run 02_create_fabric_items.py (creates Lakehouse)
     - Azure CLI logged in (az login)
 
 What this script does:
@@ -73,7 +73,7 @@ if not os.path.exists(config_path):
 
 if not os.path.exists(fabric_ids_path):
     print(f"ERROR: fabric_ids.json not found")
-    print("       Run 02_setup_fabric.py first")
+    print("       Run 02_create_fabric_items.py first")
     sys.exit(1)
 
 with open(config_path) as f:
@@ -245,7 +245,7 @@ Uploaded {len(uploaded_files)} files: {', '.join(uploaded_files)}
 Tables loaded: {', '.join(ontology_config['tables'].keys())}
 
 Next step - Generate schema prompt:
-  python scripts/04_generate_prompt.py
+  python scripts/04_generate_agent_prompt.py
 
 To reload data later (e.g., with new/larger dataset):
   python scripts/01_generate_sample_data.py --scenario <SCENARIO> --size medium

@@ -3,31 +3,26 @@ Build Solution
 Master script that runs all steps to build the complete solution.
 
 Usage:
-    # Run with AI-generated data (recommended)
-    python scripts/00_build_solution.py --ai
-
-    # Run with manual data (Retail demo)
+    # Run full solution
     python scripts/00_build_solution.py
 
-    # Skip specific steps
-    python scripts/00_build_solution.py --skip-fabric  # Skip Fabric setup
-    python scripts/00_build_solution.py --skip-search  # Skip AI Search upload
+    # Foundry-only mode (no Fabric required)
+    python scripts/00_build_solution.py --foundry-only
     
     # Start from a specific step
     python scripts/00_build_solution.py --from 04
 
 Steps:
-    01  - Generate sample data (manual) OR
-    01a - Generate sample data (AI-powered, custom industry)
-    02  - Setup Fabric workspace (lakehouse, warehouse)
+    01  - Generate sample data (AI-powered)
+    02  - Create Fabric items (lakehouse, warehouse)
     03  - Load data into Fabric
-    04  - Generate NL2SQL prompt
+    04  - Generate agent prompt
     05  - Create Fabric Data Agent
     06  - Upload documents to AI Search
-    07  - Create single-tool Foundry agent (SQL only)
-    07a - Create multi-tool Foundry agent (SQL + Search)
-    08  - Test single-tool agent
-    08a - Test multi-tool agent
+    07  - Create Foundry agent
+    08  - Test agent
+
+Foundry-only mode skips Fabric (02-05) and creates a search-only agent.
 """
 
 import argparse
@@ -42,22 +37,20 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # ============================================================================
 
 STEPS = {
-    "01": {"script": "01_generate_sample_data.py", "name": "Generate Sample Data (Manual)", "time": "~10s"},
-    "01a": {"script": "01a_generate_sample_data.py", "name": "Generate Sample Data (AI)", "time": "~2min"},
-    "02": {"script": "02_setup_fabric.py", "name": "Setup Fabric Workspace", "time": "~30s"},
+    "01": {"script": "01_generate_sample_data.py", "name": "Generate Sample Data", "time": "~2min"},
+    "02": {"script": "02_create_fabric_items.py", "name": "Create Fabric Items", "time": "~30s"},
     "03": {"script": "03_load_fabric_data.py", "name": "Load Data into Fabric", "time": "~1min"},
-    "04": {"script": "04_generate_prompt.py", "name": "Generate NL2SQL Prompt", "time": "~5s"},
+    "04": {"script": "04_generate_agent_prompt.py", "name": "Generate Agent Prompt", "time": "~5s"},
     "05": {"script": "05_create_fabric_agent.py", "name": "Create Fabric Data Agent", "time": "~30s"},
     "06": {"script": "06_upload_to_search.py", "name": "Upload to AI Search", "time": "~1min"},
-    "07": {"script": "07_create_foundry_agent.py", "name": "Create Single-Tool Agent", "time": "~10s"},
-    "07a": {"script": "07a_create_foundry_agent.py", "name": "Create Multi-Tool Agent", "time": "~10s"},
-    "08": {"script": "08_test_foundry_agent.py", "name": "Test Single-Tool Agent", "time": "interactive"},
-    "08a": {"script": "08a_test_multi_tool_agent.py", "name": "Test Multi-Tool Agent", "time": "interactive"},
+    "07": {"script": "07_create_foundry_agent.py", "name": "Create Foundry Agent", "time": "~10s"},
+    "07-search": {"script": "07_create_foundry_agent.py", "name": "Create Foundry Agent (Search Only)", "time": "~10s", "args": ["--foundry-only"]},
+    "08": {"script": "08_test_foundry_agent.py", "name": "Test Foundry Agent", "time": "interactive"},
 }
 
 # Default pipeline order
-DEFAULT_PIPELINE = ["01", "02", "03", "04", "05", "06", "07a"]
-AI_PIPELINE = ["01a", "02", "03", "04", "05", "06", "07a"]
+DEFAULT_PIPELINE = ["01", "02", "03", "04", "05", "06", "07"]
+FOUNDRY_ONLY_PIPELINE = ["01", "06", "07-search"]
 
 # ============================================================================
 # Parse Arguments
@@ -68,36 +61,36 @@ parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter,
     epilog="""
 Examples:
-  python scripts/00_build_solution.py --ai           # Build with AI-generated data
-  python scripts/00_build_solution.py                # Build with manual data
+  python scripts/00_build_solution.py                # Build full solution
   python scripts/00_build_solution.py --from 04      # Start from step 04
-  python scripts/00_build_solution.py --only 07a     # Run only specific steps
+  python scripts/00_build_solution.py --only 07      # Run only specific steps
   python scripts/00_build_solution.py --skip-fabric  # Skip Fabric steps
+  python scripts/00_build_solution.py --foundry-only # No Fabric required (Search only)
 """
 )
 
-parser.add_argument("--ai", action="store_true", 
-                    help="Use AI-generated data (01a) instead of manual (01)")
+parser.add_argument("--foundry-only", action="store_true",
+                    help="Foundry-only mode: skip Fabric entirely, use AI Search only")
 parser.add_argument("--industry", type=str, 
-                    help="Industry for AI data generation (overrides .env)")
+                    help="Industry for data generation (overrides .env)")
 parser.add_argument("--usecase", type=str, 
-                    help="Use case for AI data generation (overrides .env)")
+                    help="Use case for data generation (overrides .env)")
 parser.add_argument("--size", choices=["small", "medium", "large"],
-                    help="Data size for AI generation (overrides .env)")
+                    help="Data size for generation (overrides .env)")
 parser.add_argument("--clean", action="store_true",
                     help="Clean and recreate Fabric artifacts (use when switching scenarios)")
 
 parser.add_argument("--from", dest="from_step", type=str,
                     help="Start from this step (e.g., --from 04)")
 parser.add_argument("--only", nargs="+", type=str,
-                    help="Run only these steps (e.g., --only 07a 08a)")
+                    help="Run only these steps (e.g., --only 07 08)")
 
 parser.add_argument("--skip-fabric", action="store_true",
                     help="Skip Fabric setup steps (02, 03)")
 parser.add_argument("--skip-search", action="store_true",
                     help="Skip AI Search upload (06)")
 parser.add_argument("--skip-agents", action="store_true",
-                    help="Skip agent creation and testing (05, 07, 07a, 08, 08a)")
+                    help="Skip agent creation and testing (05, 07, 08)")
 
 parser.add_argument("--dry-run", action="store_true",
                     help="Show what would be run without executing")
@@ -112,8 +105,8 @@ args = parser.parse_args()
 
 if args.only:
     pipeline = args.only
-elif args.ai:
-    pipeline = AI_PIPELINE.copy()
+elif args.foundry_only:
+    pipeline = FOUNDRY_ONLY_PIPELINE.copy()
 else:
     pipeline = DEFAULT_PIPELINE.copy()
 
@@ -133,7 +126,7 @@ if args.skip_fabric:
 if args.skip_search:
     pipeline = [s for s in pipeline if s != "06"]
 if args.skip_agents:
-    pipeline = [s for s in pipeline if s not in ["05", "07", "07a", "08", "08a"]]
+    pipeline = [s for s in pipeline if s not in ["05", "07", "08"]]
 
 # ============================================================================
 # Validate
@@ -149,15 +142,15 @@ for step in pipeline:
 from load_env import load_all_env
 load_all_env()
 
-# AI arguments: CLI > .env
-if args.ai and "01a" in pipeline:
+# Data generation arguments: CLI > .env
+if "01" in pipeline:
     args.industry = args.industry or os.getenv("INDUSTRY")
     args.usecase = args.usecase or os.getenv("USECASE")
     args.size = args.size or os.getenv("DATA_SIZE", "small")
     
     if not args.industry or not args.usecase:
         print("\n" + "="*60)
-        print("AI Data Generation Mode")
+        print("Data Generation")
         print("="*60)
         print("\nNo INDUSTRY/USECASE found in .env or CLI args.")
         print("\nSample scenarios you can use:")
@@ -204,7 +197,7 @@ for i, step in enumerate(pipeline, 1):
     info = STEPS[step]
     print(f"  {i}. {info['name']} ({info['time']})")
 
-if args.ai and args.industry:
+if args.industry:
     print(f"\n  Industry: {args.industry}")
     print(f"  Use Case: {args.usecase}")
 
@@ -234,11 +227,16 @@ def run_step(step_id):
     # Build command
     cmd = [sys.executable, script_path]
     
-    # Add arguments for specific scripts
-    if step_id == "01a" and args.ai:
+    # Add step-specific arguments defined in STEPS
+    if "args" in info:
+        cmd.extend(info["args"])
+    
+    # Add arguments for data generation script
+    if step_id == "01" and args.industry:
         cmd.extend(["--industry", args.industry])
         cmd.extend(["--usecase", args.usecase])
-        cmd.extend(["--size", args.size])
+        if args.size:
+            cmd.extend(["--size", args.size])
     
     # Pass --clean to step 02 if requested
     if step_id == "02" and args.clean:
@@ -287,5 +285,7 @@ if failed:
     sys.exit(1)
 else:
     print("[OK] Pipeline completed successfully!")
-    print("\nNext: python scripts/08a_test_multi_tool_agent.py")
-
+    if args.foundry_only:
+        print("\nNext: python scripts/08_test_foundry_agent.py --foundry-only")
+    else:
+        print("\nNext: python scripts/08_test_foundry_agent.py")

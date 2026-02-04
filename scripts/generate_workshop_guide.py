@@ -359,7 +359,7 @@ def generate_workshop_guide():
     
     pdf.chapter_title("Step 3: Test the Full Agent", level=2)
     pdf.body_text("Once the build completes, test the full orchestration agent:")
-    pdf.code_block("python scripts/08a_test_multi_tool_agent.py")
+    pdf.code_block("python scripts/08_test_foundry_agent.py")
     
     pdf.body_text("Try these sample questions:")
     pdf.bullet_point("How many products do we have?")
@@ -464,19 +464,19 @@ def generate_workshop_guide():
     scripts = [
         ("00_build_solution.py", "Master orchestration script",
          "Runs all other scripts in sequence. Accepts --ai, --clean, --industry, and --usecase flags."),
-        ("01a_generate_sample_data.py", "AI data generation",
+        ("01_generate_sample_data.py", "AI data generation",
          "Uses GPT-4o-mini to generate realistic CSV data and PDF documents based on your scenario."),
-        ("02_setup_fabric.py", "Fabric Lakehouse and Ontology",
+        ("02_create_fabric_items.py", "Fabric Lakehouse and Ontology",
          "Creates the Lakehouse for data storage and Ontology for semantic understanding."),
         ("03_load_fabric_data.py", "Data loading",
          "Uploads CSV files to OneLake and loads them as Delta tables."),
-        ("04_generate_prompt.py", "Schema extraction",
+        ("04_generate_agent_prompt.py", "Schema extraction",
          "Reads table schemas to generate prompts for the AI agent."),
         ("05_create_fabric_agent.py", "Fabric Data Agent",
          "Creates a Data Agent in Fabric that uses the Ontology to answer questions."),
         ("06_upload_to_search.py", "Document indexing",
          "Uploads PDF documents to AI Search with vector embeddings."),
-        ("07a_create_foundry_agent.py", "Foundry orchestration agent",
+        ("07_create_foundry_agent.py", "Foundry orchestration agent",
          "Creates the main AI agent that combines Fabric and Search tools."),
     ]
     
@@ -500,7 +500,7 @@ def generate_workshop_guide():
     pdf.ln(3)
     
     pdf.chapter_title("Running the Test", level=2)
-    pdf.code_block("python scripts/08a_test_multi_tool_agent.py")
+    pdf.code_block("python scripts/08_test_foundry_agent.py")
     
     pdf.chapter_title("Understanding the Output", level=2)
     pdf.body_text("When you ask a question, the agent shows:")

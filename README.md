@@ -147,7 +147,7 @@ This automatically:
 Run interactive tests combining both Foundry IQ and Fabric IQ:
 
 ```bash
-python scripts/08a_test_multi_tool_agent.py
+python scripts/08_test_foundry_agent.py
 ```
 
 Try these question types:
@@ -173,7 +173,7 @@ azd down
 ## Project Structure
 
 ```
-fabric-ontology-lab/
+nc-iq-workshop/
 ├── .devcontainer/          # GitHub Codespaces config
 ├── .env.example            # Configuration template
 ├── azure.yaml              # azd configuration
@@ -182,14 +182,14 @@ fabric-ontology-lab/
 │   └── modules/
 │       └── foundry.bicep
 ├── scripts/
-│   ├── 00_run_pipeline.py      # Full pipeline orchestrator
-│   ├── 01a_generate_sample_data.py  # AI data generation
-│   ├── 02_setup_fabric.py      # Fabric lakehouse & ontology
+│   ├── 00_build_solution.py    # Full pipeline orchestrator
+│   ├── 01_generate_sample_data.py   # AI data generation
+│   ├── 02_create_fabric_items.py  # Create Fabric items
 │   ├── 03_load_fabric_data.py  # Load data to Fabric
-│   ├── 04_generate_prompt.py   # NL2SQL prompt generation
+│   ├── 04_generate_agent_prompt.py # Agent prompt generation
 │   ├── 06_upload_to_search.py  # Document indexing
-│   ├── 07a_create_foundry_agent.py  # Multi-tool agent
-│   └── 08a_test_multi_tool_agent.py # Interactive testing
+│   ├── 07_create_foundry_agent.py   # Create Foundry agent
+│   └── 08_test_foundry_agent.py     # Interactive testing
 └── data/                   # Generated sample data
 ```
 

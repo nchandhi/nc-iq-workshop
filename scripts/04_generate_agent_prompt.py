@@ -3,7 +3,7 @@
 Reads ontology schema and generates an optimized prompt for NL2SQL agents.
 
 Usage:
-    python 04_generate_prompt.py [--from-fabric] [--from-config]
+    python 04_generate_agent_prompt.py [--from-fabric] [--from-config]
 
 Options:
     --from-fabric   Fetch schema from Fabric Ontology API (requires Fabric setup)
@@ -96,7 +96,7 @@ elif args.from_fabric:
     ids_path = os.path.join(config_dir, "fabric_ids.json")
     if not os.path.exists(ids_path):
         print(f"ERROR: fabric_ids.json not found")
-        print("       Run 02_setup_fabric.py first")
+        print("       Run 02_create_fabric_items.py first")
         sys.exit(1)
     
     with open(ids_path) as f:

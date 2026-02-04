@@ -3,8 +3,10 @@
 ## Prerequisites
 
 - Azure subscription with Contributor access
+- [Visual Studio Code](https://code.visualstudio.com/download)
 - [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
 - [Python 3.10+](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads)
 - Microsoft Fabric workspace (for Fabric IQ features)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nchandhi/nc-iq-workshop)

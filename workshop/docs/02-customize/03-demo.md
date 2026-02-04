@@ -5,7 +5,7 @@
 After generation completes, test the agent:
 
 ```bash
-python scripts/08a_test_multi_tool_agent.py
+python scripts/08_test_foundry_agent.py
 ```
 
 ## Use the Generated Sample Questions

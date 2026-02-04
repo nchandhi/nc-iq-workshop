@@ -1,22 +1,32 @@
 """
-08 - Test AI Foundry Agent with SQL Function
-Interactive chat with the Foundry Agent using OpenAI Responses API.
+08 - Test AI Foundry Agent
+Interactive chat with the Foundry Agent.
 
 Usage:
-    python 08_test_foundry_agent.py
+    python 08_test_foundry_agent.py               # Full mode (SQL + Search)
+    python 08_test_foundry_agent.py --foundry-only  # Search only (no Fabric)
 
 Type 'quit' or 'exit' to end the conversation.
 
-This script handles the execute_sql function calls by:
-1. Getting Azure AD token
-2. Connecting to Fabric Lakehouse SQL endpoint via pyodbc
-3. Executing the query and returning results
+This script handles function tools:
+    Full mode: execute_sql + search_documents
+    Foundry-only: search_documents only
 """
 
 import os
 import sys
 import json
 import struct
+import argparse
+
+# Parse arguments first
+parser = argparse.ArgumentParser()
+parser.add_argument("--agent-id", default=os.getenv("FOUNDRY_AGENT_ID"))
+parser.add_argument("--foundry-only", action="store_true",
+                    help="Search-only mode (no Fabric/SQL)")
+args = parser.parse_args()
+
+FOUNDRY_ONLY = args.foundry_only
 
 # Load environment from azd + project .env
 from load_env import load_all_env
@@ -24,8 +34,10 @@ load_all_env()
 
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
+from azure.search.documents import SearchClient
 
-import pyodbc
+if not FOUNDRY_ONLY:
+    import pyodbc
 
 # ============================================================================
 # Configuration
@@ -33,6 +45,7 @@ import pyodbc
 
 # Azure services - from azd environment
 ENDPOINT = os.getenv("AZURE_AI_PROJECT_ENDPOINT")
+SEARCH_ENDPOINT = os.getenv("AZURE_AI_SEARCH_ENDPOINT")
 
 # Project settings - from .env
 WORKSPACE_ID = os.getenv("FABRIC_WORKSPACE_ID")
@@ -43,13 +56,18 @@ if not ENDPOINT:
     print("       Run 'azd up' to deploy Azure resources")
     sys.exit(1)
 
-if not WORKSPACE_ID:
+if not FOUNDRY_ONLY and not WORKSPACE_ID:
     print("ERROR: FABRIC_WORKSPACE_ID not set in .env")
+    print("       Use --foundry-only to skip Fabric, or set FABRIC_WORKSPACE_ID")
     sys.exit(1)
 
 if not DATA_FOLDER:
     print("ERROR: DATA_FOLDER not set in .env")
     print("       Run 01_generate_sample_data.py first")
+    sys.exit(1)
+
+if not SEARCH_ENDPOINT:
+    print("ERROR: AZURE_AI_SEARCH_ENDPOINT not set in .env")
     sys.exit(1)
 
 data_dir = os.path.abspath(DATA_FOLDER)
@@ -60,11 +78,6 @@ if not os.path.exists(config_dir):
     config_dir = data_dir  # Fallback to old structure
 
 # Get agent ID
-import argparse
-p = argparse.ArgumentParser()
-p.add_argument("--agent-id", default=os.getenv("FOUNDRY_AGENT_ID"))
-args = p.parse_args()
-
 AGENT_ID = args.agent_id
 
 if not AGENT_ID:
@@ -73,58 +86,75 @@ if not AGENT_ID:
     if os.path.exists(agent_ids_path):
         with open(agent_ids_path) as f:
             agent_ids = json.load(f)
-        AGENT_ID = agent_ids.get("foundry_agent_id")
+        AGENT_ID = agent_ids.get("agent_id")
 
 if not AGENT_ID:
     print("ERROR: No agent ID found.")
     print("       Run 07_create_foundry_agent.py first or provide --agent-id")
     sys.exit(1)
 
-# Load Fabric IDs
+# Load Fabric IDs (optional in foundry-only mode)
+LAKEHOUSE_NAME = None
+LAKEHOUSE_ID = None
 fabric_ids_path = os.path.join(config_dir, "fabric_ids.json")
-if not os.path.exists(fabric_ids_path):
-    print("ERROR: fabric_ids.json not found. Run 02_setup_fabric.py first.")
+if os.path.exists(fabric_ids_path):
+    with open(fabric_ids_path) as f:
+        fabric_ids = json.load(f)
+    LAKEHOUSE_NAME = fabric_ids.get("lakehouse_name")
+    LAKEHOUSE_ID = fabric_ids.get("lakehouse_id")
+elif not FOUNDRY_ONLY:
+    print("ERROR: fabric_ids.json not found. Run 02_create_fabric_items.py first or use --foundry-only")
     sys.exit(1)
 
-with open(fabric_ids_path) as f:
-    fabric_ids = json.load(f)
-
-LAKEHOUSE_NAME = fabric_ids.get("lakehouse_name")
-LAKEHOUSE_ID = fabric_ids.get("lakehouse_id")
+# Load Search IDs
+search_ids_path = os.path.join(config_dir, "search_ids.json")
+if os.path.exists(search_ids_path):
+    with open(search_ids_path) as f:
+        search_ids = json.load(f)
+    INDEX_NAME = search_ids.get("index_name")
+else:
+    # Try to get solution name from fabric_ids or ontology
+    solution_name = "demo"
+    if os.path.exists(fabric_ids_path):
+        with open(fabric_ids_path) as f:
+            solution_name = json.load(f).get("solution_name", "demo")
+    INDEX_NAME = f"{solution_name}-documents"
 
 print(f"\n{'='*60}")
-print("AI Foundry Agent Chat")
-print(f"{'='*60}")
-print(f"Agent ID: {AGENT_ID}")
-print(f"Lakehouse: {LAKEHOUSE_NAME}")
-print(f"Type 'quit' to exit, 'help' for sample questions\n")
-
-# ============================================================================
-# Get SQL Endpoint
-# ============================================================================
-
-def get_sql_endpoint():
-    """Get the SQL analytics endpoint for the Lakehouse"""
-    credential = DefaultAzureCredential()
-    token = credential.get_token("https://api.fabric.microsoft.com/.default")
-    
-    import requests
-    headers = {"Authorization": f"Bearer {token.token}"}
-    url = f"https://api.fabric.microsoft.com/v1/workspaces/{WORKSPACE_ID}/lakehouses/{LAKEHOUSE_ID}"
-    
-    resp = requests.get(url, headers=headers)
-    if resp.status_code == 200:
-        data = resp.json()
-        props = data.get("properties", {})
-        sql_props = props.get("sqlEndpointProperties", {})
-        return sql_props.get("connectionString")
-    return None
-
-SQL_ENDPOINT = get_sql_endpoint()
-if SQL_ENDPOINT:
-    print(f"SQL Endpoint: {SQL_ENDPOINT}")
+if FOUNDRY_ONLY:
+    print("AI Agent Chat (Search Only)")
 else:
-    print("WARNING: Could not get SQL endpoint. SQL queries may fail.")
+    print("Multi-Tool AI Agent Chat")
+print(f"{'='*60}")
+print("Type 'quit' to exit, 'help' for sample questions\n")
+
+# ============================================================================
+# Get SQL Endpoint (skip in foundry-only mode)
+# ============================================================================
+
+SQL_ENDPOINT = None
+
+if not FOUNDRY_ONLY:
+    def get_sql_endpoint():
+        """Get the SQL analytics endpoint for the Lakehouse"""
+        credential = DefaultAzureCredential()
+        token = credential.get_token("https://api.fabric.microsoft.com/.default")
+        
+        import requests
+        headers = {"Authorization": f"Bearer {token.token}"}
+        url = f"https://api.fabric.microsoft.com/v1/workspaces/{WORKSPACE_ID}/lakehouses/{LAKEHOUSE_ID}"
+        
+        resp = requests.get(url, headers=headers)
+        if resp.status_code == 200:
+            data = resp.json()
+            props = data.get("properties", {})
+            sql_props = props.get("sqlEndpointProperties", {})
+            return sql_props.get("connectionString")
+        return None
+
+    SQL_ENDPOINT = get_sql_endpoint()
+    if not SQL_ENDPOINT:
+        print("WARNING: Could not get SQL endpoint. SQL queries may fail.")
 
 # ============================================================================
 # SQL Execution Function
@@ -178,16 +208,56 @@ def execute_sql(sql_query):
         return f"SQL Error: {str(e)}"
 
 # ============================================================================
+# AI Search Function
+# ============================================================================
+
+def search_documents(query, top=3):
+    """Search documents in Azure AI Search"""
+    try:
+        credential = DefaultAzureCredential()
+        search_client = SearchClient(
+            endpoint=SEARCH_ENDPOINT,
+            index_name=INDEX_NAME,
+            credential=credential
+        )
+        
+        # Perform hybrid search (text + vector if available)
+        results = search_client.search(
+            search_text=query,
+            top=min(top, 10),
+            query_type="semantic",
+            semantic_configuration_name="default-semantic",
+            select=["content", "title", "source", "page_number"]
+        )
+        
+        # Format results
+        result_lines = []
+        for i, result in enumerate(results, 1):
+            result_lines.append(f"\n--- Result {i} ---")
+            result_lines.append(f"Source: {result.get('source', 'Unknown')} (Page {result.get('page_number', '?')})")
+            result_lines.append(f"Title: {result.get('title', 'Unknown')}")
+            result_lines.append(f"Content: {result.get('content', '')[:500]}...")
+        
+        if not result_lines:
+            return "No documents found matching the query."
+        
+        return "\n".join(result_lines)
+        
+    except Exception as e:
+        return f"Search Error: {str(e)}"
+
+# ============================================================================
 # Load Sample Questions
 # ============================================================================
 
 questions_path = os.path.join(config_dir, "sample_questions.txt")
-sample_questions = []
-if os.path.exists(questions_path):
-    with open(questions_path) as f:
-        for line in f:
-            if line.strip().startswith("-"):
-                sample_questions.append(line.strip()[2:])
+sample_questions = [
+    # Questions that REQUIRE both tools to make sense:
+    "What is the total value of orders that would qualify for free shipping based on our shipping policy?",
+    "How many of our orders meet the minimum purchase requirement for loyalty rewards?",
+    "What's our revenue from product categories that have extended return windows according to our return policy?",
+    "Based on our shipping zones, what's the order volume from regions with expedited shipping options?",
+]
 
 # ============================================================================
 # Initialize Client
@@ -206,14 +276,12 @@ MODEL = agent_def['model']
 INSTRUCTIONS = agent_def['instructions']
 TOOLS = agent_def['tools']
 
-print(f"Model: {MODEL}")
-
 # Get OpenAI client
 openai_client = project_client.get_openai_client()
 
 # Create a conversation
 conversation = openai_client.conversations.create()
-print(f"Conversation ID: {conversation.id}")
+print("-" * 60)
 
 # ============================================================================
 # Chat Function
@@ -253,12 +321,15 @@ def chat(user_message):
         # Handle function calls
         tool_outputs = []
         for fc in function_calls:
+            args = json.loads(fc.arguments)
+            
             if fc.name == "execute_sql":
-                args = json.loads(fc.arguments)
                 sql_query = args.get("sql_query", "")
                 
-                print(f"\n  [Executing SQL]")
-                print(f"  {sql_query[:100]}{'...' if len(sql_query) > 100 else ''}")
+                print(f"\n  [SQL Tool] Executing query:")
+                # Print full query with indentation
+                for line in sql_query.strip().split('\n'):
+                    print(f"    {line}")
                 
                 result = execute_sql(sql_query)
                 
@@ -266,6 +337,35 @@ def chat(user_message):
                     "type": "function_call_output",
                     "call_id": fc.call_id,
                     "output": result
+                })
+                
+            elif fc.name == "search_documents":
+                query = args.get("query", "")
+                top = args.get("top", 3)
+                
+                print(f"\n  [Search Tool] Searching for: {query}...")
+                
+                result = search_documents(query, top)
+                
+                # Show the result that goes to the agent
+                print(f"  [Search Result]:")
+                # Truncate if too long, but show meaningful content
+                display = result[:500] if len(result) > 500 else result
+                for line in display.strip().split('\n'):
+                    print(f"    {line}")
+                if len(result) > 500:
+                    print(f"    ... ({len(result)} chars total)")
+                
+                tool_outputs.append({
+                    "type": "function_call_output",
+                    "call_id": fc.call_id,
+                    "output": result
+                })
+            else:
+                tool_outputs.append({
+                    "type": "function_call_output",
+                    "call_id": fc.call_id,
+                    "output": f"Unknown function: {fc.name}"
                 })
         
         # Submit function results and continue conversation
@@ -300,8 +400,8 @@ while True:
         break
     
     if user_input.lower() == "help":
-        print("\nSample questions:")
-        for q in sample_questions[:5]:
+        print("\nSample questions (that may use BOTH tools):")
+        for q in sample_questions:
             print(f"  - {q}")
         continue
     
@@ -317,4 +417,4 @@ while True:
         print(f"Error: {e}")
 
 # Cleanup
-print(f"\nSession ended. Conversation ID: {conversation.id}")
+print("\nGoodbye!")

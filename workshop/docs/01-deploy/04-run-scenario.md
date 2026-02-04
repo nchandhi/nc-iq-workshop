@@ -47,14 +47,14 @@ Building Solution
   ✓ Agent: multi-tool-agent
 
 ============================================================
-Build complete! Run: python scripts/08a_test_multi_tool_agent.py
+Build complete! Run: python scripts/08_test_foundry_agent.py
 ============================================================
 ```
 
 ## Test the Agent
 
 ```bash
-python scripts/08a_test_multi_tool_agent.py
+python scripts/08_test_foundry_agent.py
 ```
 
 ### Sample Conversation
