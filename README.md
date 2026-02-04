@@ -2,7 +2,9 @@
 
 Build AI agents that combine **unstructured document knowledge** with **structured enterprise data** using knowledge bases, ontology, and natural language queries.
 
+
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nchandhi/nc-iq-workshop)
+
 
 ## The Opportunity
 
@@ -38,6 +40,7 @@ This lab enables an intelligent agent that:
 | Sample Data | AI-Generated | Custom data for any industry/use case |
 
 ### Open the Lab
+
 
 [![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub-Codespaces-blue?logo=github)](https://codespaces.new/nchandhi/nc-iq-workshop)
 [![Open in VS Code](https://img.shields.io/badge/VS%20Code-Dev%20Containers-blue?logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nchandhi/nc-iq-workshop)
