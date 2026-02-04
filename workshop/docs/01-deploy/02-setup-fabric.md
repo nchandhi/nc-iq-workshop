@@ -1,6 +1,6 @@
-# Configure Fabric items
+# Create Fabric workspace
 
-Configure your Microsoft Fabric workspace for Fabric IQ.
+Create and configure your Microsoft Fabric workspace for Fabric IQ.
 
 ## Prerequisites
 

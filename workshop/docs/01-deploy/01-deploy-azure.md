@@ -28,15 +28,9 @@ Follow the prompts to select your environment name, subscription, and location e
 
 ## Verify Deployment
 
-You should see:
-
-```
-SUCCESS: Your application was provisioned in Azure.
-```
-
 Verify in [Azure Portal](https://portal.azure.com/) that your resource group contains all resources:
 
-- Azure AI Services (Foundry)
+- Microsoft Foundry
 - Azure AI Search
 - Storage Account
 - Application Insights
@@ -50,4 +44,4 @@ After deployment, Azure endpoints are automatically saved to `.azure/<env>/.env`
 
 ---
 
-[← Overview](index.md) | [Configure Fabric items →](02-setup-fabric.md)
+[← Overview](index.md) | [Create Fabric workspace →](02-setup-fabric.md)
