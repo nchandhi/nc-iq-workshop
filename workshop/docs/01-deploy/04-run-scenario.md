@@ -19,6 +19,15 @@ This uses the `data/default` folder and runs all setup steps:
 | 06 | Upload documents to AI Search | ~1min |
 | 07a | Create Multi-Tool Agent | ~10s |
 
+!!! tip "No Fabric License?"
+    If you don't have access to Microsoft Fabric, you can still run the workshop using document search only:
+    
+    ```bash
+    python scripts/00_build_solution.py --foundry-only
+    ```
+    
+    This skips Fabric setup (steps 02-05) and creates an agent with AI Search capabilities only.
+
 ## Expected Output
 
 ```

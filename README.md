@@ -2,10 +2,6 @@
 
 Build AI agents that combine **unstructured document knowledge** with **structured enterprise data** using knowledge bases, ontology, and natural language queries.
 
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nchandhi/nc-iq-workshop)
-
-
 ## The Opportunity
 
 Organizations have valuable knowledge spread across documents (PDFs, policies, manuals) and structured systems (databases, data warehouses). By connecting these sources through AI, users can get unified answers from a single conversational interface.
@@ -127,7 +123,7 @@ DATA_SIZE=small
 Run the complete pipeline with a single command:
 
 ```bash
-python scripts/00_build_solution.py --ai
+python scripts/00_build_solution.py
 ```
 
 This automatically:
@@ -139,7 +135,8 @@ This automatically:
 6. **Creates agent** - Builds multi-tool AI agent with SQL + Search
 
 **Pipeline Options:**
-- `--ai` - Use AI-generated data (recommended)
+- `--clean` - Reset Fabric artifacts when switching scenarios
+- `--foundry-only` - Skip Fabric entirely, use AI Search only (no Fabric license required)
 - `--from 03` - Start from a specific step
 - `--only 06` - Run only one step
 - `--skip 05` - Skip a specific step

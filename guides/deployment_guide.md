@@ -83,7 +83,7 @@ python scripts/08_test_foundry_agent.py
 | Resource | Purpose |
 |----------|---------|
 | Azure AI Foundry | Hosts AI agents |
-| Azure AI Services | GPT-4o and embeddings |
+| Azure AI Services | GPT-4o-mini and embeddings |
 | Azure AI Search | Document vectors |
 | Storage Account | Documents and artifacts |
 

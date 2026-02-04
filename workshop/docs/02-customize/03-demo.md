@@ -93,10 +93,10 @@ Before customer meetings, prepare 5-7 questions:
 
 ```bash
 # Edit .env with new customer's industry and use case, then:
-python scripts/00_build_solution.py --ai --clean
+python scripts/00_build_solution.py --clean
 
 # Or inline:
-python scripts/00_build_solution.py --ai --clean \
+python scripts/00_build_solution.py --clean \
   --industry "New Industry" \
   --usecase "New use case description"
 ```

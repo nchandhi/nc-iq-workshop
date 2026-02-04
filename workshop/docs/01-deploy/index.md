@@ -11,7 +11,7 @@ The solution combines Microsoft Fabric and Microsoft Foundry to create an AI sol
 
 - **Microsoft Fabric** provides the data layer with Lakehouse, Warehouse, and the Fabric IQ semantic layer for natural language to SQL translation
 - **Microsoft Foundry** hosts the AI agents, including Foundry IQ for document retrieval and the Multi-Tool Agent that orchestrates both capabilities
-- **Azure AI Services** powers the language models (GPT-4o) and embeddings
+- **Azure AI Services** powers the language models (GPT-4o-mini) and embeddings
 - **Azure AI Search** stores document vectors for semantic retrieval
 
 ---

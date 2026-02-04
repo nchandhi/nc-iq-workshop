@@ -5,12 +5,11 @@
 With your `.env` configured, generate customer-specific data:
 
 ```bash
-python scripts/00_build_solution.py --ai --clean
+python scripts/00_build_solution.py --clean
 ```
 
 | Flag | Purpose |
 |------|---------|
-| `--ai` | Use AI to generate industry-specific data |
 | `--clean` | Reset Fabric artifacts (required when switching scenarios) |
 
 ### Alternative: Inline Parameters
@@ -18,7 +17,7 @@ python scripts/00_build_solution.py --ai --clean
 Override `.env` settings directly from the command line:
 
 ```bash
-python scripts/00_build_solution.py --ai --clean \
+python scripts/00_build_solution.py --clean \
   --industry "Insurance" \
   --usecase "Property insurance with claims processing and policy management"
 ```

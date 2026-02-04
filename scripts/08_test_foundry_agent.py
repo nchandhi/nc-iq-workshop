@@ -251,13 +251,30 @@ def search_documents(query, top=3):
 # ============================================================================
 
 questions_path = os.path.join(config_dir, "sample_questions.txt")
-sample_questions = [
-    # Questions that REQUIRE both tools to make sense:
-    "What is the total value of orders that would qualify for free shipping based on our shipping policy?",
-    "How many of our orders meet the minimum purchase requirement for loyalty rewards?",
-    "What's our revenue from product categories that have extended return windows according to our return policy?",
-    "Based on our shipping zones, what's the order volume from regions with expedited shipping options?",
-]
+sample_questions = []
+
+if os.path.exists(questions_path):
+    with open(questions_path, "r") as f:
+        content = f.read()
+    
+    # Parse the COMBINED INSIGHT QUESTIONS section (best demonstrates multi-tool)
+    in_combined_section = False
+    for line in content.split("\n"):
+        if "COMBINED INSIGHT QUESTIONS" in line:
+            in_combined_section = True
+            continue
+        if in_combined_section:
+            if line.startswith("==="):  # Next section
+                break
+            if line.strip().startswith("- "):
+                sample_questions.append(line.strip()[2:])
+
+# Fallback if no questions loaded
+if not sample_questions:
+    sample_questions = [
+        "What insights can you provide from the data?",
+        "How does the data compare to our documented policies?",
+    ]
 
 # ============================================================================
 # Initialize Client
@@ -389,14 +406,13 @@ while True:
     try:
         user_input = input("\nYou: ").strip()
     except (EOFError, KeyboardInterrupt):
-        print("\n\nGoodbye!")
+        print()  # New line after ^C
         break
     
     if not user_input:
         continue
     
     if user_input.lower() in ["quit", "exit", "q"]:
-        print("\nGoodbye!")
         break
     
     if user_input.lower() == "help":
