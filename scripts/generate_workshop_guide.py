@@ -179,7 +179,7 @@ def generate_workshop_guide():
         ("1. Introduction", "What you will build"),
         ("2. Prerequisites", "What you need before starting"),
         ("3. Architecture Overview", "Understanding the components"),
-        ("4. Part 1: Run with Sample Scenario", "Retail example walkthrough"),
+        ("4. Part 1: Run with Sample Scenario", "Telecommunications example walkthrough"),
         ("5. Part 2: Customize Your Own Scenario", "Create your industry solution"),
         ("6. Understanding the Build Process", "What each step does"),
         ("7. Testing Your Agent", "Interactive chat with your data"),
@@ -234,7 +234,7 @@ def generate_workshop_guide():
     pdf.chapter_title("Workshop Flow", level=2)
     pdf.body_text("This workshop is divided into two parts:")
     pdf.ln(2)
-    pdf.numbered_item(1, "**Run with Sample Scenario** - Follow along with a pre-defined Retail scenario to understand how everything works.", markdown=True)
+    pdf.numbered_item(1, "**Run with Sample Scenario** - Follow along with a pre-defined Telecommunications scenario to understand how everything works.", markdown=True)
     pdf.numbered_item(2, "**Customize Your Own** - Use AI to generate data and documents for YOUR industry and use case.", markdown=True)
     pdf.ln(3)
     pdf.body_text(
@@ -308,19 +308,19 @@ def generate_workshop_guide():
     
     pdf.body_text(
         "In this section, you will run the complete build process with a pre-defined "
-        "Retail scenario. This helps you understand how each component works "
+        "Telecommunications scenario. This helps you understand how each component works "
         "before creating your own custom scenario."
     )
     pdf.ln(3)
     
-    pdf.chapter_title("The Retail Scenario", level=2)
+    pdf.chapter_title("The Telecommunications Scenario", level=2)
     pdf.body_text(
-        "Our sample scenario is a Retail system for inventory and sales "
-        "tracking. It includes:"
+        "Our sample scenario is a Telecommunications system for network operations. "
+        "It includes:"
     )
-    pdf.bullet_point("Products table: Product catalog with prices and stock levels")
-    pdf.bullet_point("Transactions table: Sales transactions with quantities and dates")
-    pdf.bullet_point("Policy documents: Store policies and procedures (PDFs)")
+    pdf.bullet_point("Network outages table: Outage events, duration, impact level")
+    pdf.bullet_point("Trouble tickets table: Support tickets linked to outages")
+    pdf.bullet_point("Policy documents: Service policies and procedures (PDFs)")
     pdf.ln(3)
     
     pdf.chapter_title("Step 1: Run the Build Script", level=2)
@@ -329,19 +329,19 @@ def generate_workshop_guide():
     )
     pdf.code_block(
         'python scripts/00_build_solution.py \\\n'
-        '    --industry "Retail" \\\n'
-        '    --usecase "Inventory and sales tracking"'
+        '    --industry "Telecommunications" \\\n'
+        '    --usecase "Network operations with outage tracking"'
     )
     
     pdf.info_box(
         "Note",
-        "This uses pre-generated sample data from the data/ folder. "
+        "This uses pre-generated sample data from the data/default folder. "
         "No AI generation is needed for the sample scenario."
     )
     pdf.ln(3)
     
     pdf.chapter_title("What the Build Script Does", level=2)
-    pdf.numbered_item(1, "Loads sample data (products.csv, transactions.csv)")
+    pdf.numbered_item(1, "Loads sample data (network_outages.csv, trouble_tickets.csv)")
     pdf.numbered_item(2, "Creates Fabric Lakehouse and uploads data as Delta tables")
     pdf.numbered_item(3, "Creates Fabric Ontology with entities and relationships")
     pdf.numbered_item(4, "Generates PDF documents from the data")
@@ -362,10 +362,10 @@ def generate_workshop_guide():
     pdf.code_block("python scripts/08_test_foundry_agent.py")
     
     pdf.body_text("Try these sample questions:")
-    pdf.bullet_point("How many products do we have?")
-    pdf.bullet_point("Show me the top 5 products by sales")
-    pdf.bullet_point("What is our return policy?")
-    pdf.bullet_point("Which products are low in stock?")
+    pdf.bullet_point("How many outages occurred last month?")
+    pdf.bullet_point("What is the average resolution time for tickets?")
+    pdf.bullet_point("What are the policies for notifying customers?")
+    pdf.bullet_point("Which outages exceeded our policy thresholds?")
     
     # ========================================================================
     # 5. Part 2: Customize Your Own Scenario
@@ -439,7 +439,7 @@ def generate_workshop_guide():
         "create fresh Fabric artifacts:"
     )
     pdf.code_block(
-        'python scripts/00_build_solution.py --ai --clean \\\n'
+        'python scripts/00_build_solution.py --clean \\\n'
         '    --industry "Finance" \\\n'
         '    --usecase "Loan applications and credit scoring"'
     )
@@ -463,7 +463,7 @@ def generate_workshop_guide():
     
     scripts = [
         ("00_build_solution.py", "Master orchestration script",
-         "Runs all other scripts in sequence. Accepts --ai, --clean, --industry, and --usecase flags."),
+         "Runs all other scripts in sequence. Accepts --clean, --foundry-only, --industry, and --usecase flags."),
         ("01_generate_sample_data.py", "AI data generation",
          "Uses GPT-4o-mini to generate realistic CSV data and PDF documents based on your scenario."),
         ("02_create_fabric_items.py", "Fabric Lakehouse and Ontology",
@@ -607,10 +607,10 @@ def generate_workshop_guide():
     # ========================================================================
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_dir = os.path.dirname(script_dir)
-    docs_dir = os.path.join(project_dir, "docs")
-    os.makedirs(docs_dir, exist_ok=True)
+    guides_dir = os.path.join(project_dir, "guides")
+    os.makedirs(guides_dir, exist_ok=True)
     
-    output_path = os.path.join(docs_dir, "Foundry_IQ_Fabric_IQ_Workshop_Guide.pdf")
+    output_path = os.path.join(guides_dir, "workshop_guide.pdf")
     pdf.output(output_path)
     
     print(f"\n{'='*60}")
