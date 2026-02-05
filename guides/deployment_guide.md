@@ -82,7 +82,7 @@ python scripts/08_test_foundry_agent.py
 
 | Resource | Purpose |
 |----------|---------|
-| Azure AI Foundry | Hosts AI agents |
+| Azure AI Foundry | Hosts Orchestrator Agent and Foundry IQ |
 | Azure AI Services | GPT-4o-mini and embeddings |
 | Azure AI Search | Document vectors |
 | Storage Account | Documents and artifacts |
@@ -127,9 +127,9 @@ python scripts/00_build_solution.py --clean
 ```
 
 ### Sample Industries
-- Healthcare, Insurance, Finance, Retail
+- Telecommunications, Insurance, Finance, Retail
 - Manufacturing, Education, Hospitality
-- Real Estate, Energy, Telecommunications
+- Real Estate, Energy, Logistics
 
 The `--clean` flag creates fresh Fabric artifacts for each new scenario.
 
