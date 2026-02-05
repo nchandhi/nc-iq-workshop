@@ -49,4 +49,4 @@ python scripts/00_build_solution.py --clean \
 
 ---
 
-[← Delete resources](index.md) | [Back to Overview →](../00-overview/index.md)
+[← Delete resources](index.md) | [Back to Overview →](../index.md)
