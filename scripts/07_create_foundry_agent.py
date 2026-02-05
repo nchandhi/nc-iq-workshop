@@ -346,16 +346,9 @@ if os.path.exists(agent_ids_path):
     with open(agent_ids_path) as f:
         agent_ids = json.load(f)
 
-if FOUNDRY_ONLY:
-    agent_ids["agent_id"] = agent.id
-    agent_ids["agent_name"] = agent.name
-else:
-    agent_ids["agent_id"] = agent.id
-    agent_ids["agent_name"] = agent.name
-    agent_ids["workspace_id"] = WORKSPACE_ID
-    agent_ids["lakehouse_name"] = LAKEHOUSE_NAME
-
-agent_ids["endpoint"] = ENDPOINT
+# Only save agent-specific info, not environment details
+agent_ids["agent_id"] = agent.id
+agent_ids["agent_name"] = agent.name
 agent_ids["search_index"] = INDEX_NAME
 
 with open(agent_ids_path, "w") as f:

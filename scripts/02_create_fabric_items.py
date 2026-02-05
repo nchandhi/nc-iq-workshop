@@ -484,13 +484,11 @@ print(f"\n[3/4] Saving configuration...")
 
 ids_path = os.path.join(config_dir, "fabric_ids.json")
 fabric_ids = {
-    "workspace_id": WORKSPACE_ID,
     "lakehouse_id": lakehouse_id,
     "lakehouse_name": lakehouse_name,
     "ontology_id": ontology_id,
     "ontology_name": ontology_name,
     "solution_name": SOLUTION_NAME,
-    "data_folder": data_dir,
     "created_at": datetime.now().isoformat()
 }
 with open(ids_path, "w") as f:

@@ -365,7 +365,6 @@ def main():
     search_ids_path = config_dir / "search_ids.json"
     search_info = {
         "index_name": INDEX_NAME,
-        "search_endpoint": AZURE_AI_SEARCH_ENDPOINT,
         "document_count": len(documents),
         "pdf_files": [p.name for p in pdf_files]
     }

@@ -82,7 +82,12 @@ with open(config_path) as f:
 with open(fabric_ids_path) as f:
     fabric_ids = json.load(f)
 
-WORKSPACE_ID = fabric_ids["workspace_id"]
+# Get workspace_id from environment (not config file for security)
+WORKSPACE_ID = os.getenv("FABRIC_WORKSPACE_ID")
+if not WORKSPACE_ID:
+    print("ERROR: FABRIC_WORKSPACE_ID not set in .env")
+    sys.exit(1)
+
 LAKEHOUSE_ID = fabric_ids["lakehouse_id"]
 LAKEHOUSE_NAME = fabric_ids["lakehouse_name"]
 FABRIC_API = "https://api.fabric.microsoft.com/v1"
