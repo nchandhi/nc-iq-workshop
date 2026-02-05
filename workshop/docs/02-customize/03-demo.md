@@ -1,6 +1,6 @@
 # Build & Test (Customer PoC)
 
-## Test Your Custom Agent
+## Test your solution
 
 After generation completes, test the agent:
 
@@ -21,9 +21,9 @@ The file contains three categories of questions:
 
 | Category | Source | Example |
 |----------|--------|---------|
-| **Structured data questions** | Fabric IQ (data) | "How many outages occurred last month?" |
-| **Unstructured data questions** | Foundry IQ (docs) | "What are the policies for notifying customers?" |
-| **Combined questions** | Both sources | "Which outages exceeded our policy thresholds?" |
+| **Structured data questions** | Fabric IQ (data) | "How many open claims do we have?" |
+| **Unstructured data questions** | Foundry IQ (docs) | "What's our process for filing a property claim?" |
+| **Combined questions** | Both sources | "Which claims are approaching our SLA deadline based on our process guidelines?" |
 
 !!! tip "Use these questions first"
     The generated questions are tailored to your scenario's data and documents. Start with these before improvising.
@@ -66,13 +66,13 @@ Before customer meetings, prepare 5-7 questions:
 
 | # | Question Type | Example |
 |---|---------------|---------|
-| 1 | Structured data | "How many outages occurred last month?" |
-| 2 | Structured data | "What is the average resolution time for tickets?" |
-| 3 | Structured data | "Which outage caused the most customer impact?" |
-| 4 | Unstructured data | "What are the policies for notifying customers of outages?" |
-| 5 | Unstructured data | "What steps must be taken to escalate an outage?" |
-| 6 | **Combined** | "Which outages exceeded the maximum duration defined in our policy?" |
-| 7 | **Combined** | "What percentage of tickets were resolved within our SLA?" |
+| 1 | Structured data | "How many open claims do we have?" |
+| 2 | Structured data | "What's the total value of claims filed this month?" |
+| 3 | Structured data | "Which agents have the most policies?" |
+| 4 | Unstructured data | "What's our process for filing a property claim?" |
+| 5 | Unstructured data | "What does our standard homeowner policy cover?" |
+| 6 | **Combined** | "Which open claims are approaching our SLA deadline based on our process guidelines?" |
+| 7 | **Combined** | "Do any current claims involve coverage types not in our standard policy?" |
 
 !!! tip "Let customers ask questions"
     After your prepared questions, let customers ask their own questions. This shows the solution handles real scenarios, not just scripted ones.
@@ -89,7 +89,7 @@ Before customer meetings, prepare 5-7 questions:
     
     **Next:** Review [Deep dive](../03-understand/index.md) to prepare for technical questions
 
-## Quick Reference: Regenerate for Another Customer
+## Quick Reference: Regenerate for another industry use case
 
 ```bash
 # Edit .env with new customer's industry and use case, then:

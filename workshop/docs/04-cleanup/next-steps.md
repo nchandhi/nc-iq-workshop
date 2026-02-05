@@ -43,9 +43,6 @@ python scripts/00_build_solution.py --clean \
 - [Microsoft Fabric Documentation](https://learn.microsoft.com/fabric/)
 - [Responsible AI Practices](https://www.microsoft.com/ai/responsible-ai)
 
----
-
-**Go build amazing customer PoCs! 🚀**
 
 ---
 

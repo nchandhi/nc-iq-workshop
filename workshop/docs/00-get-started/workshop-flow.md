@@ -21,6 +21,7 @@ Generate custom data for **each use case**:
 | Retail | Product catalog + return policies | "What's our return policy for electronics over $500?" |
 | Finance | Account data + lending policies | "Which loan applications meet our approval criteria?" |
 | Insurance | Claims data + policy documents | "What's the status of claims filed this week vs our SLA?" |
+| Energy | Grid monitoring + safety protocols | "Which substations are operating above 80% capacity?" |
 | **Customer X** | **Their data + Their docs** | **Their burning questions** |
 
 !!! tip "Pre-PoC prep"

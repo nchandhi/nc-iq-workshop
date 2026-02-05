@@ -12,7 +12,7 @@ This section prepares you for technical questions during customer conversations.
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                     Multi-Tool AI Agent                             │
+│                     Orchestrator Agent                              │
 │                                                                     │
 │   1. Analyzes question                                              │
 │   2. Decides which tool(s) to use                                   │

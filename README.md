@@ -103,16 +103,16 @@ DATA_SIZE=small
 
 | Industry | Use Case |
 |----------|----------|
-| Logistics | Fleet management with delivery tracking |
-| Healthcare | Patient records and appointment scheduling |
+| Telecommunications | Network operations and service management |
 | Retail | Inventory management with sales analytics |
-| Finance | Transaction monitoring and fraud detection |
 | Manufacturing | Production line tracking with quality control |
+| Insurance | Claims processing and policy management |
+| Finance | Transaction monitoring and fraud detection |
+| Energy | Grid monitoring and outage response |
 | Education | Student enrollment and course management |
 | Hospitality | Hotel reservations and guest services |
+| Logistics | Fleet management with delivery tracking |
 | Real Estate | Property listings and lease management |
-| Insurance | Claims processing and policy management |
-| Telecommunications | Customer service and network monitoring |
 
 > **Note**: Azure endpoints (`AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_SEARCH_ENDPOINT`, etc.) are read automatically from the azd environment. No need to copy them manually!
 
