@@ -24,7 +24,7 @@ azd up
 Follow the prompts to select your environment name, subscription, and location etc.
 
 !!! warning "Wait for Completion"
-    Deployment takes 5-7 minutes. Don't proceed until you see the success message.
+    Deployment takes 7-8 minutes. Don't proceed until you see the success message.
 
 ## Verify Deployment
 

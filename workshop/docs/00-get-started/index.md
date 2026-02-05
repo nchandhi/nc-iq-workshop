@@ -2,7 +2,8 @@
 
 ## Prerequisites
 
-- Azure subscription with Contributor access ( gpt-40-mini and text-embedding-ada-002 model capacity )
+- Azure subscription with Contributor access
+- gpt-40-mini and text-embedding-ada-002 model capacity
 - Microsoft Fabric workspace (for Fabric IQ features)
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
