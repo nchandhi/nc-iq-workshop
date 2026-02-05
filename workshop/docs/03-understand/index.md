@@ -44,7 +44,7 @@ This section prepares you for technical questions during customer conversations.
 |-----------|--------------|------------------|
 | **Foundry IQ** | Intelligent search over documents | Answers policy/process questions with citations |
 | **Fabric IQ** | Natural language to SQL | Answers data questions without writing queries |
-| **Multi-Tool Agent** | Orchestrates both tools | Single interface for all enterprise knowledge |
+| **Orchestrator Agent** | Orchestrates both tools | Single interface for all enterprise knowledge |
 
 ## Common Customer Questions
 

@@ -2,12 +2,14 @@
 
 ## Prerequisites
 
-- Azure subscription with Contributor access
+- Azure subscription with Contributor access ( gpt-40-mini and text-embedding-ada-002 model capacity )
+- Microsoft Fabric workspace (for Fabric IQ features)
+
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
 - [Python 3.10+](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/downloads)
-- Microsoft Fabric workspace (for Fabric IQ features)
+
 
 [![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub-Codespaces-blue?logo=github)](https://codespaces.new/nchandhi/nc-iq-workshop)
 [![Open in VS Code](https://img.shields.io/badge/VS%20Code-Dev%20Containers-blue?logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nchandhi/nc-iq-workshop)
@@ -15,4 +17,4 @@
 
 ---
 
-[Your PoC journey →](poc-journey.md)
+[Workshop Flow →](workshop-flow.md)

@@ -30,16 +30,5 @@ You'll need these values for the next step:
 | Workspace ID | URL after `/groups/` |
 | Workspace name | Workspace settings |
 
-## Verify connection
-
-Run this to verify your Fabric connection:
-
-```bash
-python scripts/check_fabric_items.py
-```
-
-You should see your workspace listed.
-
----
 
 [← Deploy Azure resources](01-deploy-azure.md) | [Configure dev environment →](03-configure.md)

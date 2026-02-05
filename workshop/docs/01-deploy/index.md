@@ -10,10 +10,10 @@ This step deploys the core infrastructure and runs the solution with a default s
 The solution combines Microsoft Fabric and Microsoft Foundry to create an AI solution that can answer questions using both structured data and unstructured documents:
 
 - **Microsoft Fabric** provides the data layer with Lakehouse, Warehouse, and the Fabric IQ semantic layer for natural language to SQL translation
-- **Microsoft Foundry** hosts the AI agents, including Foundry IQ for document retrieval and the Multi-Tool Agent that orchestrates both capabilities
+- **Microsoft Foundry** hosts the AI agents, including Foundry IQ for document retrieval and the Orchestrator Agent that orchestrates both capabilities
 - **Azure AI Services** powers the language models (GPT-4o-mini) and embeddings
 - **Azure AI Search** stores document vectors for semantic retrieval
 
 ---
 
-[← Get Started](../00-get-started/poc-journey.md) | [Deploy Azure resources →](01-deploy-azure.md)
+[← Get Started](../00-get-started/workshop-flow.md) | [Deploy Azure resources →](01-deploy-azure.md)

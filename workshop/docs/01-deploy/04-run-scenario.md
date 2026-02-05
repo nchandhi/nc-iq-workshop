@@ -2,7 +2,7 @@
 
 ## Run the Full Pipeline
 
-One command builds everything using the pre-populated sample data:
+One command builds the solution including data processing and agent creation:
 
 ```bash
 python scripts/00_build_solution.py --from 02
@@ -17,47 +17,32 @@ This uses the `data/default` folder and runs all setup steps:
 | 04 | Generate NL2SQL prompt | ~5s |
 | 05 | Create Fabric Data Agent | ~30s |
 | 06 | Upload documents to AI Search | ~1min |
-| 07a | Create Multi-Tool Agent | ~10s |
+| 07a | Create Orchestrator Agent | ~10s |
 
 !!! tip "No Fabric License?"
-    If you don't have access to Microsoft Fabric, you can still run the workshop using document search only:
+    If you don't have access to Microsoft Fabric, you can still run the workshop using azure services only:
     
     ```bash
     python scripts/00_build_solution.py --foundry-only
     ```
     
-    This skips Fabric setup (steps 02-05) and creates an agent with AI Search capabilities only.
+    This skips Fabric setup (steps 02-05) and creates an agent in Microsoft Foundry only.
 
 ## Expected Output
 
 ```
-============================================================
-Building Solution
-============================================================
+> [02] Create Fabric Items... [OK]
+> [03] Load Data into Fabric... [OK]
+> [04] Generate Agent Prompt... [OK]
+> [05] Create Fabric Data Agent... [OK]
+> [06] Upload to AI Search... [OK]
+> [07] Create Foundry Agent... [OK]
 
-[02/07] Setting up Fabric workspace...
-  ✓ Lakehouse: iqworkshop_lakehouse
-  ✓ Warehouse: iqworkshop_warehouse
+------------------------------------------------------------
+[OK] Pipeline completed successfully!
 
-[03/07] Loading data into Fabric...
-  ✓ network_outages.csv → 25 rows
-  ✓ trouble_tickets.csv → 50 rows
+Next: python scripts/08_test_foundry_agent.py
 
-[04/07] Generating NL2SQL prompt...
-  ✓ Schema prompt created
-
-[05/07] Creating Fabric Data Agent...
-  ✓ Agent: fabric-data-agent
-
-[06/07] Uploading documents to AI Search...
-  ✓ 3 documents → 24 chunks indexed
-
-[07/07] Creating Multi-Tool Agent...
-  ✓ Agent: multi-tool-agent
-
-============================================================
-Build complete! Run: python scripts/08_test_foundry_agent.py
-============================================================
 ```
 
 ## Test the Agent
@@ -70,18 +55,16 @@ python scripts/08_test_foundry_agent.py
 
 ```
 ============================================================
-Multi-Tool Agent Testing
+Orchestrator Agent Chat
 ============================================================
-Agent: multi-tool-agent
-Tools: [ai_search, fabric_iq]
+Type 'quit' to exit, 'help' for sample questions
 
-Type 'exit' to quit.
 ------------------------------------------------------------
 
 You: How many outages occurred last month?
 
-Agent: Based on the database, there were 12 network outages recorded 
-       last month across all regions.
+Agent: Based on the database, there were 16 network outages recorded 
+       in January 2024.
 
 You: What are the policies for notifying customers of outages?
 
@@ -92,22 +75,26 @@ Agent: According to our Customer Service Policies document:
        - Provide estimated restoration time when available
        - Send updates every 30 minutes during extended outages
        
-       [Source: customer_service_policies.pdf, page 2]
+       [Source: customer_service_policies.pdf]
 
 You: Which outages exceeded the maximum duration defined in our policy?
 
 Agent: Let me check the outage data against our policy thresholds...
 
-       These outages exceeded the 4-hour maximum duration policy:
+       Based on a 4-hour (240 minute) maximum duration policy, these 
+       outages exceeded the threshold:
        
-       | Outage ID | Region | Duration | Policy Max | Status |
-       |-----------|--------|----------|------------|--------|
-       | OUT-1042 | Northeast | 6.5 hrs | 4 hrs | Exceeded |
-       | OUT-1089 | West | 5.2 hrs | 4 hrs | Exceeded |
+       | Outage ID | Duration (min) | Impact Level |
+       |-----------|----------------|--------------|
+       | OUT011    | 472            | Medium       |
+       | OUT004    | 446            | Low          |
+       | OUT007    | 445            | Low          |
+       | OUT005    | 417            | Medium       |
+       | OUT003    | 411            | Low          |
        
-       Recommend reviewing root cause and escalation procedures.
+       5 outages exceeded the policy maximum duration.
 
-You: exit
+You: quit
 ```
 
 ## Checkpoint
@@ -117,7 +104,7 @@ You: exit
     
     - [x] **Fabric IQ** answering data questions
     - [x] **Foundry IQ** retrieving document knowledge
-    - [x] **Multi-Tool Agent** combining both sources
+    - [x] **Orchestrator Agent** combining both sources
     
     ---
 

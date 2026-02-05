@@ -132,7 +132,7 @@ This automatically:
 3. **Loads data** - Uploads CSVs and creates Delta tables
 4. **Generates prompts** - Creates optimized NL2SQL schema prompt
 5. **Indexes documents** - Uploads PDFs to Azure AI Search
-6. **Creates agent** - Builds multi-tool AI agent with SQL + Search
+6. **Creates agent** - Builds Orchestrator Agent with SQL + Search
 
 **Pipeline Options:**
 - `--clean` - Reset Fabric artifacts when switching scenarios

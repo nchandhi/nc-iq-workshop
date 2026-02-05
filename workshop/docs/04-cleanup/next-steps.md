@@ -10,7 +10,7 @@ You now have everything you need to accelerate customer engagements.
 - ✅ **Generate any scenario**: AI creates realistic data for any industry
 - ✅ **Show document intelligence**: Foundry IQ with agentic retrieval
 - ✅ **Show data intelligence**: Fabric IQ with natural language queries
-- ✅ **Show combined power**: Multi-tool agent answers complex questions
+- ✅ **Show combined power**: Orchestrator Agent answers complex questions
 
 ### Quick Reference: Building a Customer PoC
 

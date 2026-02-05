@@ -1,16 +1,16 @@
-# Your PoC journey
+# Workshop Flow
 
-## Step 1: Deploy solution (do once)
+## Step 1: Deploy solution
 
-Deploy infrastructure and run with pre-built **sample** data:
+Deploy infrastructure and run with pre-built **sample** scenario:
 
 - Deploy **Microsoft Foundry** and Azure resources (AI Services, AI Search, Storage)
 - Configure **Microsoft Fabric** connection
-- Configure your environment
+- Configure your development environment
 - See the agent working with sample data
 - Takes ~15 minutes
 
-## Step 2: Customize for your use case (repeat)
+## Step 2: Customize for your use case
 
 Generate custom data for **each use case**:
 
@@ -30,9 +30,9 @@ Generate custom data for **each use case**:
 
 Prepare for technical questions in customer conversations:
 
-- **Foundry IQ**: How agentic retrieval plans, iterates, and reflects
 - **Fabric IQ**: How ontology translates business questions to SQL
-- **Multi-Tool Agent**: How the agent decides which source to query
+- **Foundry IQ**: How agentic retrieval plans, iterates, and reflects
+- **Orchestrator Agent**: How the agent decides which source to query
 
 ---
 
