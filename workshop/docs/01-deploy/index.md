@@ -14,6 +14,9 @@ The solution combines Microsoft Fabric and Microsoft Foundry to create an AI sol
 - **Azure AI Services** powers the language models (GPT-4o-mini) and embeddings
 - **Azure AI Search** stores document vectors for semantic retrieval
 
+!!! tip "Stuck? Ask Copilot"
+    Use GitHub Copilot Chat (`Ctrl+I`) for help with errors.
+
 ---
 
 [← Get Started](../00-get-started/workshop-flow.md) | [Deploy Azure resources →](01-deploy-azure.md)

@@ -143,6 +143,8 @@ The `--clean` flag creates fresh Fabric artifacts for each new scenario.
 | Fabric errors | Verify Workspace ID in .env |
 | Python errors | Ensure venv is activated |
 
+> **Tip:** Use GitHub Copilot Chat (`Ctrl+I` in VS Code) for help with errors.
+
 ---
 
 ## Resources
