@@ -1,35 +1,22 @@
-# Build faster with Solution Accelerators – Foundry IQ + Fabric IQ
+# Overview
 
-Build AI agents that combine **unstructured document knowledge** with **structured enterprise data** using knowledge bases, ontology, and natural language queries.
+A strong PoC helps customers envision the impact of solutions on their business. It moves the conversation from "interesting idea" to "let's explore this." But creating something that feels relevant can take weeks of custom work: infrastructure, data pipelines, integrations, and tailored scenarios that reflect their challenges.
 
-[![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub-Codespaces-blue?logo=github)](https://codespaces.new/nchandhi/nc-iq-workshop)
-[![Open in VS Code](https://img.shields.io/badge/VS%20Code-Dev%20Containers-blue?logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/nchandhi/nc-iq-workshop)
+This workshop helps you learn how to use solution accelerators to solve that by deploying industry-tailored scenarios quickly so you can demonstrate real value from the first conversation.
 
-## What You'll Build
+## Workshop flow
 
-An intelligent AI agent that:
+| Step | Description | Time |
+|------|-------------|------|
+| **1. Deploy solution** | Deploy Microsoft Foundry + Fabric & run with default scenario | ~15 min |
+| **2. Customize for your use case** | Generate industry-specific data and test | ~20 min |
+| **3. Deep dive** | Technical deep dive for Q&A | ~15 min |
+| **4. Cleanup** | Delete Azure resources | ~5 min |
 
-- **Creates knowledge bases** from documents with agentic retrieval
-- **Defines business ontology** to understand entities and relationships  
-- **Queries data** using natural language over documents and structured data
-- **Combines both** to answer complex business questions
-
-## Quick Start
-
-| Step | Action | Time |
-|------|--------|------|
-| 1 | [Deploy Azure infrastructure](01-deploy/01-deploy-azure.md) | ~7 min |
-| 2 | [Configure Fabric workspace](01-deploy/02-setup-fabric.md) | ~3 min |
-| 3 | [Build & test the solution](01-deploy/04-run-scenario.md) | ~5 min |
-
-## Workshop Modules
-
-| Module | Description |
-|--------|-------------|
-| [Deploy solution](01-deploy/index.md) | Set up Azure resources and run with default data |
-| [Customize](02-customize/index.md) | Generate custom scenarios for customer PoCs |
-| [Deep dive](03-understand/index.md) | Understand Foundry IQ and Fabric IQ internals |
-| [Cleanup](04-cleanup/index.md) | Delete resources and next steps |
+!!! tip "Before a PoC"
+    1. Complete **Step 1** once to deploy and see it working
+    2. Run **Step 2** to customize for your use case
+    3. Review **Step 3** to prepare for technical questions
 
 ---
 

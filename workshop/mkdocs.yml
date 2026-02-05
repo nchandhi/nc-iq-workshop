@@ -57,8 +57,7 @@ extra:
       link: https://github.com/nchandhi/nc-iq-workshop
 
 nav:
-  - Home: index.md
-  - Overview: 00-overview/index.md
+  - Overview: index.md
   - Get Started:
     - Prerequisites: 00-get-started/index.md
     - Your PoC journey: 00-get-started/poc-journey.md
