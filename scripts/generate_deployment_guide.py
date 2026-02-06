@@ -112,20 +112,22 @@ def create_guide():
     
     pdf.step(2, 'Deploy Azure resources (~7 min)',
         'azd auth login\nazd up',
-        'Choose environment name and region (eastus2 or westus2 recommended)')
+        'Choose environment name and region (eastus2 or westus2 recommended). If needed: azd auth login --tenant-id <tenant-id>')
     
     pdf.step(3, 'Configure Fabric workspace',
         'cp .env.example .env',
         'Edit .env: Set FABRIC_WORKSPACE_ID from app.fabric.microsoft.com URL')
     
     pdf.step(4, 'Setup Python environment',
-        'cd scripts\npython -m venv .venv\n.venv\\Scripts\\activate   # or: source .venv/bin/activate\npip install uv && uv pip install -r requirements.txt')
+        'python -m venv .venv\n.venv\\Scripts\\activate   # or: source .venv/bin/activate\npip install uv && uv pip install -r scripts/requirements.txt')
     
     pdf.step(5, 'Build the solution (~5 min)',
-        'python 00_build_solution.py --from 02')
+        'python scripts/00_build_solution.py --from 02',
+        'No Fabric? Use: python scripts/00_build_solution.py --from 06 --foundry-only')
     
     pdf.step(6, 'Test the agent',
-        'python 08_test_foundry_agent.py')
+        'python scripts/08_test_foundry_agent.py',
+        'No Fabric? Use: python scripts/08_test_foundry_agent.py --foundry-only')
     
     # Sample Questions
     pdf.section_header('Try These Questions')
@@ -137,7 +139,7 @@ def create_guide():
     pdf.section_header('Customize for Your Industry')
     pdf.set_font(pdf.code_font, '', 7)
     pdf.set_fill_color(*LIGHT_GRAY)
-    pdf.multi_cell(0, 4, 'python 00_build_solution.py --clean --industry "Insurance" --usecase "Claims processing"', fill=True)
+    pdf.multi_cell(0, 4, 'python scripts/00_build_solution.py --clean --industry "Insurance" --usecase "Claims processing"', fill=True)
     pdf.ln(1)
     pdf.info_text('Industries: Telecommunications | Insurance | Finance | Retail | Manufacturing | Energy')
     
