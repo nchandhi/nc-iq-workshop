@@ -4,6 +4,8 @@ Creates a one-page PDF deployment guide for workshop participants.
 """
 
 from fpdf import FPDF
+from fpdf.fonts import FontFace
+import os
 
 # Colors
 BLUE = (0, 120, 212)       # Microsoft blue
@@ -16,6 +18,20 @@ class DeploymentGuidePDF(FPDF):
         super().__init__()
         self.set_margins(15, 15, 15)
         self.set_auto_page_break(auto=True, margin=10)
+        
+        # Use Windows system fonts if available, otherwise fallback
+        fonts_dir = "C:/Windows/Fonts"
+        if os.path.exists(os.path.join(fonts_dir, "segoeui.ttf")):
+            self.add_font('Segoe', '', os.path.join(fonts_dir, 'segoeui.ttf'))
+            self.add_font('Segoe', 'B', os.path.join(fonts_dir, 'segoeuib.ttf'))
+            self.add_font('Segoe', 'I', os.path.join(fonts_dir, 'segoeuii.ttf'))
+            self.add_font('Consolas', '', os.path.join(fonts_dir, 'consola.ttf'))
+            self.main_font = 'Segoe'
+            self.code_font = 'Consolas'
+        else:
+            # Fallback to core fonts
+            self.main_font = 'Helvetica'
+            self.code_font = 'Courier'
     
     def header(self):
         # Blue header bar
@@ -23,7 +39,7 @@ class DeploymentGuidePDF(FPDF):
         self.rect(0, 0, 210, 22, 'F')
         
         # Title text - single line
-        self.set_font('Helvetica', 'B', 12)
+        self.set_font(self.main_font, 'B', 12)
         self.set_text_color(*WHITE)
         self.set_xy(15, 8)
         self.cell(0, 6, 'Build faster with Solution Accelerators  |  Foundry IQ + Fabric IQ')
@@ -32,7 +48,7 @@ class DeploymentGuidePDF(FPDF):
     
     def section_header(self, title, num=None):
         self.ln(3)
-        self.set_font('Helvetica', 'B', 11)
+        self.set_font(self.main_font, 'B', 11)
         self.set_text_color(*BLUE)
         if num:
             self.cell(0, 6, f'{num}. {title}', new_x='LMARGIN', new_y='NEXT')
@@ -42,37 +58,38 @@ class DeploymentGuidePDF(FPDF):
     
     def step(self, num, title, code=None, note=None):
         # Step number + title on same line
-        self.set_font('Helvetica', 'B', 9)
+        self.set_font(self.main_font, 'B', 9)
         self.set_text_color(*BLUE)
         self.set_x(15)
         self.cell(0, 5, f'{num}. {title}', new_x='LMARGIN', new_y='NEXT')
         self.set_text_color(*DARK_GRAY)
         
-        # Code block
+        # Code block - explicitly set regular style
         if code:
             self.set_x(20)
-            self.set_font('Courier', '', 7)
+            self.set_font(self.code_font, '', 7)  # Empty string for regular style
             self.set_fill_color(*LIGHT_GRAY)
             self.multi_cell(175, 4, code, fill=True)
+            self.set_font(self.main_font, '', 8)  # Reset to regular font
         
         # Note
         if note:
             self.set_x(20)
-            self.set_font('Helvetica', 'I', 7)
+            self.set_font(self.main_font, 'I', 7)
             self.set_text_color(100, 100, 100)
             self.multi_cell(175, 4, note)
             self.set_text_color(*DARK_GRAY)
     
     def bullet_item(self, text):
-        self.set_font('Helvetica', '', 8)
+        self.set_font(self.main_font, '', 8)
         self.set_text_color(*DARK_GRAY)
         self.set_x(15)
-        self.cell(5, 4, chr(149))
+        self.cell(5, 4, '-')
         self.set_x(20)
         self.multi_cell(175, 4, text)
     
     def info_text(self, text):
-        self.set_font('Helvetica', '', 8)
+        self.set_font(self.main_font, '', 8)
         self.set_text_color(*DARK_GRAY)
         self.set_x(15)
         self.multi_cell(180, 4, text)
@@ -118,7 +135,7 @@ def create_guide():
     
     # Customization
     pdf.section_header('Customize for Your Industry')
-    pdf.set_font('Courier', '', 7)
+    pdf.set_font(pdf.code_font, '', 7)
     pdf.set_fill_color(*LIGHT_GRAY)
     pdf.multi_cell(0, 4, 'python 00_build_solution.py --clean --industry "Insurance" --usecase "Claims processing"', fill=True)
     pdf.ln(1)
@@ -129,7 +146,7 @@ def create_guide():
     pdf.set_draw_color(*BLUE)
     pdf.line(15, pdf.get_y(), 195, pdf.get_y())
     pdf.ln(2)
-    pdf.set_font('Helvetica', 'I', 7)
+    pdf.set_font(pdf.main_font, 'I', 7)
     pdf.set_text_color(100, 100, 100)
     pdf.cell(0, 4, 'Tip: Use GitHub Copilot Chat (Ctrl+I) for help with errors', new_x='LMARGIN', new_y='NEXT')
     pdf.cell(0, 4, 'Repository: github.com/microsoft/agentic-applications-for-unified-data-foundation-solution-accelerator')
